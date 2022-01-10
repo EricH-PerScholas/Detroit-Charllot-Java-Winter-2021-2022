@@ -9,8 +9,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-@Entity(name = "users")
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+@Entity
+@Table(name = "users")
 public class User {
 
 	@Id
@@ -37,6 +42,13 @@ public class User {
 
 	@OneToMany(mappedBy = "user")
 	private List<UserRole> userRoles = new ArrayList<UserRole>();
+	
+	
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.toString(this, ToStringStyle.MULTI_LINE_STYLE);
+	}
+
 
 	public Integer getId() {
 		return id;
