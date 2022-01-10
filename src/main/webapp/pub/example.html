@@ -2,6 +2,37 @@
 
 <html>
 
+<style>
+	h2, h4 {
+		color:blue;
+	}
+	
+	p + span {
+		color:red;
+	}
+	
+	p ~ span {
+		color:red;
+	}
+	
+	.classname {
+		color:green;
+		background-color:yellow;
+	}
+	
+	.anything {
+		border-width: 5px; 
+			border-color: black; 
+			border-style: solid; 
+			margin: 5px;
+			padding: 5px;
+	}
+	
+	#tagid {
+		color: orange;
+	}
+</style>
+
 <head>
 <title>Title Perscholas</title>
 </head>
@@ -12,14 +43,45 @@
 	<h3>TSome other content</h3>
 	<h4>TSome other content</h4>
 	<h5>TSome other content</h5>
-
+	<h2>TSome other content</h2>
+	
 
 	this is text before
 	<p>this is text in paragraph
 	<p>
 		this is text after <span>span1 inline</span> <span>span2 inline</span>
-	<h3>Table</h3>
 
+	
+	<h3> CSS Selectors </h3>
+	
+	<div>
+		<p>this is a paragrah</p>
+		<span>testing a CSS selector  p + span</span>
+	</div>
+	
+	<div>
+		<p>this is a paragrah</p>
+		<ul>
+		<li>list item 1
+		<li>list item 2
+		</ul>
+		<span>testing a CSS selector  p ~ span</span>
+	</div>
+	
+	
+	<div>
+		<span id="tagid">this span is using an id</span>
+	</div>
+	
+	<div>
+		<br>
+		<span class="classname">This is using a css class called classname</span>
+		<br>
+		<br>
+		<span class="classname anything">This is a second classname</span>
+	</div>
+
+	<h3> Table Example </h3>
 
 	<div>
 		<table border="1" cellpadding="2">
@@ -46,7 +108,7 @@
 				<td>data 1</td>
 				<td>data 2</td>
 				<td>data 3</td>
-				<td>data 4</td>
+				<td class="classname">data 4</td>
 			</tr>
 			<tr>
 				<td>data 1</td>
