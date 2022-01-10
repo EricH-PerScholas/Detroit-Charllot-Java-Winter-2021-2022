@@ -3,6 +3,8 @@
 <html>
 
 <style>
+/* 	this is internal Css */
+
 	h2, h4 {
 		color:blue;
 	}
@@ -31,13 +33,38 @@
 	#tagid {
 		color: orange;
 	}
+	
+	#tagid1 {
+		color: red;
+	}
+	
+	.googlefont {
+		font-family: 'The Nautigal', cursive;
+		font-size: 40px;
+	}
 </style>
 
 <head>
-<title>Title Perscholas</title>
+	<title>Title Perscholas</title>
+	
+	<!-- importing an external style sheet -->
+	<link rel="stylesheet" type="text/css" href="css/basic.css">
+	
+	<!-- this is the simplest way to bring in a font
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+		-->
+	
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=The+Nautigal&display=swap" rel="stylesheet">
+	
 </head>
 
 <body>
+<a href="#anchor-name">This is a link to an anchor on this page</a>.
+
+
+
 	<h1>TSome other content</h1>
 	<h2>TSome other content</h2>
 	<h3>TSome other content</h3>
@@ -74,12 +101,27 @@
 	</div>
 	
 	<div>
+		<span id="tagid1">this span is using an id</span>
+	</div>
+	
+	<div>
 		<br>
 		<span class="classname">This is using a css class called classname</span>
 		<br>
 		<br>
 		<span class="classname anything">This is a second classname</span>
 	</div>
+	
+	<h3>Google Font</h3>
+	<p class="googlefont">This is a google font that should be cursive</p>
+	<p>without the font class</p>
+	
+	<h3> External CSS </h3>
+	
+	<div class="externalclass">
+	This is external CSS formatted
+	</div>
+	
 
 	<h3> Table Example </h3>
 
@@ -93,10 +135,10 @@
 				<td><b>Col5</b></td>
 			</tr>
 			<tr>
-				<td>data 1 row 1</td>
-				<td>data 2 row 1</td>
-				<td>data 3 row 1</td>
-				<td>data 4 row 1</td>
+				<td style="background-color:#5d46e0">data 1 row 1</td>
+				<td style="background-color:#9080ed">data 2 row 1</td>
+				<td style="background-color: rgb(195, 70, 212)">data 3 row 1</td>
+				<td style="background-color: rgba(195, 70, 212,.5)">data 4 row 1</td>
 			</tr>
 			<tr>
 				<td>data 1 row 2</td>
@@ -117,7 +159,7 @@
 				<td>data 4</td>
 				<td>data 5</td>
 			</tr>
-			<tr>
+			<tr class="targetthiselement">
 				<td>data 1 row 5</td>
 				<td>data 2 row 5</td>
 				<td>data 3 row 5</td>
@@ -131,8 +173,11 @@
 	<h3>Form Example</h3>
 
 	<form>
-		<span>Username</span> <input type="text"><br> <span>Password</span>
-		<input type="text"><br>
+		<span>Username</span> 
+		<input id="username" name="username" type="text"><br> 
+		
+		<span>Password</span>
+		<input id="password" name="password" type="text"><br>
 
 
 
@@ -164,18 +209,98 @@
 	</form>
 
 	<h3>Padding</h3>
+<a id="anchor-name"></a>
+
 	<div style="background-color: green">
+<!-- 	 this border should be black because black is defined after but !important overrides  -->
 		<div
 			style="padding: 30px; 
 			background-color: red; 
 			margin: 30px; 
 			border-width: 5px; 
-			border-color: red; 
+			border-color: cyan !important; 
 			border-style: solid; 
 			border-color: black; 
-			border-style: dashed">
-		Some content in here</div>
+			border-style: dashed;
+			text-align: center">
+		Some content in here.  This is inline CSS</div>
 	</div>
+	
+	
+	<h3>Float example</h3>
+	<div style="background-color:cyan">
+		DIV 1
+	</div>
+	<div style="background-color:purple; float:left">
+		DIV 2
+	</div>	
+	<div style="background-color:gray; float:right">
+		DIV 3
+	</div>
+	
+	<h3>Gradient</h3>
+	
+	<div style="width:50%; height:150px; background: linear-gradient(90deg, rgba(240,207,36,1) 0%, rgba(60,121,9,1) 49%, rgba(138,255,0,1) 100%);"></div>
+	
+	<h3> box shadow</h3>
+	
+	<div style="width:50%; height:150px; box-shadow: 10px 5px 5px green; border: 2px solid black; border-radius:5px;"></div>
+	
+	
+	<h3>Transitions</h3>
+	
+	<style>
+		.fade {
+			width:500px;
+			height:200px;
+	        opacity:0.25;
+	        background-color:orange;
+		}
+		.fade:hover
+		{	
+			width:200px;
+			height:500px;
+			transition: 2s;
+	        opacity:1;
+		}
+		
+		.fade2 {
+			width:500px;
+			height:200px;
+	        background-color:orange;
+		}
+		.fade2:hover
+		{	
+			transform: translateX(+50%);
+			 transition: transform 2s;
+		}
+	</style>
+	
+	<div class="fade"></div>
+	
+	
+	<div class="fade2"></div>
+	
+	<h3> Annimation</h3>
+	
+	<style>
+	.animationexample {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  animation-name: example;
+  animation-duration: 6s;
+}
+
+@keyframes example {
+  from {background-color: red;}
+  to {background-color: yellow;}
+}
+</style>
+
+<div class="animationexample"></div>
+
+	
 </body>
 
 </html>
