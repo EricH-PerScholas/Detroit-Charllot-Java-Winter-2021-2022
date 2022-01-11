@@ -55,6 +55,22 @@ public class UserDAO {
 			return null;
 		}
 	}
+	
+	public User findByEmail(String email) {
+		try {
+			String sql = "SELECT u FROM User u where email = :email";
+
+			// set this to use the correct entity
+			TypedQuery<User> query = em.createQuery(sql, User.class);
+			query.setParameter("email", email);
+
+			User user = query.getSingleResult();
+
+			return user;
+		} catch (Exception e) {
+			return null;
+		}
+	}
 
 	public List<User> findByFirstNameAndLastName(String firstName, String lastName) {
 		try {

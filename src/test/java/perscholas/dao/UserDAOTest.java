@@ -30,4 +30,33 @@ public class UserDAOTest {
 		Assert.assertEquals(user.getUsername(), "username");
 		Assert.assertEquals(user.getFirstName(), "first");
 	}
+	
+	@Test
+	public void addAndRemove() {
+		User newUser = new User();
+		newUser.setFirstName("New First");
+		newUser.setLastName("New Last");
+		newUser.setEmail("new@user.com");
+		newUser.setUsername("new username");
+		newUser.setPassword("new password");
+		
+		// save the new user
+		newUser = userDao.save(newUser);
+		
+		User created = userDao.findByEmail("new@user.com");
+		
+		// first test to make sure the user was created in the database
+		Assert.assertNotNull(created);
+		Assert.assertEquals(created, "new@user.com");
+		
+		// delete the user we just created
+		userDao.delete(created);
+		
+		// requery the database to see that user is gone
+		User deleted = userDao.findByEmail("new@user.com");
+		
+		Assert.assertNull(deleted);
+			
+		
+	}
 }
