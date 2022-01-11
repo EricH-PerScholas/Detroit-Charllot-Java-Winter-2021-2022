@@ -68,6 +68,7 @@ public class UserDAO {
 
 			return user;
 		} catch (Exception e) {
+			System.out.println("findByEmail : " + e.getMessage());
 			return null;
 		}
 	}

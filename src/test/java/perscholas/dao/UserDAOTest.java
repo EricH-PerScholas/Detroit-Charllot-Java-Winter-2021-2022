@@ -43,11 +43,12 @@ public class UserDAOTest {
 		// save the new user
 		newUser = userDao.save(newUser);
 		
+		// find this user by email address
 		User created = userDao.findByEmail("new@user.com");
 		
 		// first test to make sure the user was created in the database
 		Assert.assertNotNull(created);
-		Assert.assertEquals(created, "new@user.com");
+		Assert.assertEquals(created.getEmail(), "new@user.com");
 		
 		// delete the user we just created
 		userDao.delete(created);
