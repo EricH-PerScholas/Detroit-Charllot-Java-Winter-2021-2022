@@ -103,7 +103,6 @@ public class UserDAO {
 
 		em.getTransaction().begin();
 		int recordsUpdated = query.executeUpdate();
-
 		em.getTransaction().commit();
 
 		return recordsUpdated;
