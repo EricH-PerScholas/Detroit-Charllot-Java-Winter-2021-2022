@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>An HTML standard template</title>
+<meta charset="utf-8" />
+
+<link rel="stylesheet" href="./css/flexbox.css">
+
+</head>
+
+<body>
+	<section>
+		<h1>All flex boxes even size</h1>
+		<div class="container">
+			<div class="item"></div>
+			<div class="item"></div>
+			<div class="item"></div>
+			<div class="item"></div>
+			<div class="item"></div>
+			<div class="item"></div>
+		</div>
+		<br>
+
+		<h1>One box in center is bigger</h1>
+		<div class="container">
+			<div class="flex2"></div>
+			<div class="flex2"></div>
+			<div class="flex2" style="flex-grow: 2"></div>
+			<div class="flex2"></div>
+			<div class="flex2"></div>
+		</div>
+
+
+		<h1>Flex wrap center is bigger</h1>
+		<div class="container flexwrap">
+			<div class="flexwrapitem"></div>
+			<div class="flexwrapitem"></div>
+			<div class="flexwrapitem"></div>
+			<div class="flexwrapitem"></div>
+			<div class="flexwrapitem"></div>
+		</div>
+
+		<h1>Form</h1>
+			<div class="container" style="flex-direction: row">
+				<div class="align_example">
+					<p>First Name</p>
+				</div>
+				<div class="align_example">
+					<input type="text">
+				</div>
+
+			</div>
+	</section>
+</body>
+</html>
