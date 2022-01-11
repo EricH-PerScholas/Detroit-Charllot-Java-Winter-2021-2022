@@ -48,11 +48,19 @@
 }
 
 .align_example {
-  width: 25%;
-  height: 100px;
-  background-color:blue;
-  border-radius:10px;
-  color:black;
+  display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;    
+    text-align: center;
+    flex-grow: 1;
+    height: 100px;
+    background-color: blue;
+    border-radius: 10px;
+    align-items: center;
+    margin-left: 2%;
+    margin-bottom: 2%;
+
 }
 
 .align_example + .align_example {
