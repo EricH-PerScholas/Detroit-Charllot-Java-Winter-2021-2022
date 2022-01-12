@@ -3,6 +3,9 @@
 	<persistence-unit name="persistanceunit">
 		<class>perscholas.entity.User</class>
 		<class>perscholas.entity.UserRole</class>
+		<class>perscholas.entity.Order</class>
+		<class>perscholas.entity.Product</class>
+		<class>perscholas.entity.OrderProduct</class>
 	
 		<properties>
             <!-- Configuring The Database Connection Details -->
@@ -11,8 +14,8 @@
             <property name="javax.persistence.jdbc.user" value="dev" />
             <property name="javax.persistence.jdbc.password" value="ultra30dev" />
             
-            <property name="hibernate.show_sql" value="true"/>
-<property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.show_sql" value="false"/>
+<property name="hibernate.format_sql" value="false"/>
         </properties>
 	</persistence-unit>
 </persistence>

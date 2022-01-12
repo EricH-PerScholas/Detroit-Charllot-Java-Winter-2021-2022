@@ -11,12 +11,11 @@
   integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
   crossorigin="anonymous"></script>
 
-
-<script>
-
+<script src="./js/examples.js"></script>
 
 
-	
+
+<script>	
 	
 $( document ).ready(
 		
@@ -62,23 +61,39 @@ $( document ).ready(
 					
 );
 
-function fizzBuzz(num){
-	  
-	  for (var i = 1 ; i <= num ; i++){
-	    var c = i%3;
-	    var d = i%5;
-	    
-	    if( !(i%3) && !(i%5) )
-	      console.log("fizzBuzz")
-	    else if (!c)
-	      console.log("fizz")
-	    else if (!d)
-	       console.log ("buzz")
-	    else 
-	       console.log(i)
-	  }
-	  
-	}	
+function clickMe() {
+	console.log("button clicked");
+	
+	// javascript way of doing this
+	let value1 = document.getElementById('firstname').value;
+	console.log("javascript get value from text input = " + value1);
+	
+	// jquery way of doing this
+	let value = $('#firstname').val();
+	
+	// if the value in the text box = show then show the hidden element
+	if ( value == 'show' ) {
+		//$('#hiddenbox').show();
+		$('#hiddenbox').css( "display", "block" )
+		//document.getElementById("hiddenbox").style.display = block;
+
+	} else if ( value == 'hide'){
+		$('#hiddenbox').hide();
+	}
+	
+	//value = value + " SOME EXTRA TEXT ";
+	
+	// $('#firstname').val(value);
+}
+
+function mouseOver() {
+	console.log("mouse over");
+}
+
+function mouseOut() {
+	console.log("mouse out");
+}
+
 
 </script>
 
@@ -86,11 +101,19 @@ function fizzBuzz(num){
 	<h1>JavaScript Examples</h1>
 
 	<div>
-		<div></div>
-		<div></div>
+		<div>
+			First Name : 
+			<input type="text" name="firstname" id="firstname" class="firstnameclass">
+			<button type="button" onclick="clickMe()" onmouseover="mouseOver()" onmouseout="mouseOut()">Click Me</button>
+		</div>
+		<div style="display:none" id="hiddenbox">
+			<h2>This tag is hidden at first</h2>
+		</div>
 	</div>
 </body>
 
-
+<script>
+	
+</script>
 
 </html>
