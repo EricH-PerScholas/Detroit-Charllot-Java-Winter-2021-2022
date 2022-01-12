@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>Javascript Example</title>
+</head>
+
+<script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+
+
+<script>
+
+
+
+	
+	
+$( document ).ready(
+		
+	function() {
+		 /* This is a block comment */
+		
+		var x = 10;
+		//console.log( 'x is set to ' + x );
+		
+		if ( x == 10 ) {
+			let y = 15;
+			
+			//console.log( 'y is set to ' + y );
+			
+			x = 20;
+		}
+		
+		if ( 10 == '10') {
+			console.log("true using ==")
+		} else {
+			console.log("false using == ")
+		}
+		
+		if (10 === '10') {
+			console.log("true using ===")
+		} else {
+			console.log("false using ===")
+		}
+    	
+		//console.log( 'x = ' + x );
+		
+		
+		var userInput = "";
+        //userInput = prompt("Enter an arithmetic expression:");
+        console.log(userInput);
+		
+        //alert("this is a popup box")   	
+
+			console.log("before call to fizzbuzz");
+					//fizzBuzz(16);
+					
+		}
+					
+);
+
+function fizzBuzz(num){
+	  
+	  for (var i = 1 ; i <= num ; i++){
+	    var c = i%3;
+	    var d = i%5;
+	    
+	    if( !(i%3) && !(i%5) )
+	      console.log("fizzBuzz")
+	    else if (!c)
+	      console.log("fizz")
+	    else if (!d)
+	       console.log ("buzz")
+	    else 
+	       console.log(i)
+	  }
+	  
+	}	
+
+</script>
+
+<body>
+	<h1>JavaScript Examples</h1>
+
+	<div>
+		<div></div>
+		<div></div>
+	</div>
+</body>
+
+
+
+</html>
