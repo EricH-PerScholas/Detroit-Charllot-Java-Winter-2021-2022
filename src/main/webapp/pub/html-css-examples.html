@@ -36,6 +36,7 @@
 	
 	#tagid1 {
 		color: red;
+		color: green;
 	}
 	
 	.googlefont {
@@ -297,16 +298,65 @@
   to {background-color: yellow;}
 }
 
-@media (min-width:600px) and (max-width: 992px) {
-  body {
-    background-color: blue;
-  }
-}
 
 </style>
 
 <div class="animationexample"></div>
 
+<h1> Pre Tag</h1>
+<pre>
+Text in a pre element
+is displayed in a fixed-width
+font, and it preserves
+both      spaces and
+line breaks
+</pre>
+<p>
+Text in a pre element
+is displayed in a fixed-width
+font, and it preserves
+both      spaces and
+line breaks
+<p>
+
+<pre>
+	public Order findById(Integer id) {
+		try {
+			String sql = "SELECT o.* FROM orders o where o.id = :orderId";
+
+			// set this to use the correct entity
+			NativeQuery<Order> query = (NativeQuery<Order>) em.createNativeQuery(sql, Order.class);
+			query.setParameter("orderId", id);
+
+			Order order = query.getSingleResult();
+
+			return order;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+</pre>
+
+<p>
+	public Order findById(Integer id) {
+		try {
+			String sql = "SELECT o.* FROM orders o where o.id = :orderId";
+
+			// set this to use the correct entity
+			NativeQuery<Order> query = (NativeQuery<Order>) em.createNativeQuery(sql, Order.class);
+			query.setParameter("orderId", id);
+
+			Order order = query.getSingleResult();
+
+			return order;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+</p>
+
+
+<a href="https://google.com">Google</a>
 	
 </body>
 
