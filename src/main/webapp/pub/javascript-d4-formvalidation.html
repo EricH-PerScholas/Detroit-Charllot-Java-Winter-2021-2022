@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<title>Javascript Form Validation Examples</title>
+</head>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js"
+	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+	crossorigin="anonymous"></script>
+
+<style>
+input[type=text]:hover {
+	background-color: blue;
+}
+
+input[type=text]:focus {
+	background-color: red;
+}
+</style>
+
+
+<script>
+	function validate() {
+		if (document.myForm.Name.value == "") {
+			alert("Please provide your name!");
+			document.myForm.Name.focus();
+			return false;
+		} else {
+			var NAME = document.getElementById("NAME").value;
+		}
+
+		let re = new RegExp(/^[A-Z][a-z]+\s[A-Z][a-z]+$/m);
+		if (re.test(document.myForm.Name.value) == false) {
+			alert("Enter first and last name");
+			document.myForm.Name.focus();
+			console.log("invalid name = " + document.myForm.Name.value)
+			return false;
+		}
+
+		if (document.myForm.EMail.value == "") {
+			alert("Please provide your Email!");
+			document.myForm.EMail.focus();
+			return false;
+		}
+
+		if (document.myForm.EMail.value != "") {
+			if (validateEmail()) {
+				var emailValue = document.getElementById("emailID").value;
+			} else {
+				alert("Please provide your Email!");
+				document.myForm.EMail.focus();
+				return false;
+			}
+		}
+
+		if (document.myForm.Zip.value == "" || isNaN(document.myForm.Zip.value)
+				|| document.myForm.Zip.value.length != 5) {
+			alert("Please provide a zip in the format #####.");
+			document.myForm.Zip.focus();
+			return false;
+		} else {
+			var zipid = document.getElementById("ZipID").value;
+		}
+		if (document.myForm.Country.value == "-1") {
+			alert("Please provide your country!");
+			return false;
+		} else {
+			var CountryId = document.getElementById("CountryId").value;
+		}
+		if (document.myForm.password.value == "") {
+			alert("Please provide your password");
+			document.myForm.password.focus();
+			return false;
+		} else {
+			var pass = document.getElementById("password").value;
+			alert("Name: " + NAME + ", Password: " + pass + ", Email: "
+					+ emailValue + " ,Country: " + CountryId + " ,Zip Code: "
+					+ zipid);
+			return true;
+		}
+		return (true);
+	}
+
+	function validateEmail() {
+		var emailID = document.myForm.EMail.value;
+		atpos = emailID.indexOf("@");
+		//alert(atpos)
+		dotpos = emailID.lastIndexOf(".");
+		if (atpos < 1 || (dotpos - atpos < 2)) {
+			alert("Please enter correct email ID")
+			document.myForm.EMail.focus();
+			return false;
+		} else {
+			return true;
+		}
+		return (true)
+	}
+
+	//function mydropbox() {
+	//	var mylist = document.getElementById("CountryId");
+	//	console.log(mylist.options[mylist.selectedIndex].text);
+	//}
+</script>
+
+<script>
+	$(document).ready(
+		function() {
+			$('#emailID').click(function() {
+				  alert( "Handler for .click() called." );
+			});
+			
+			$('#CountryId').change(function() {
+				  //alert( "Handler for .change() called." );
+				  var mylist = document.getElementById("CountryId");
+				console.log(mylist.options[mylist.selectedIndex].text);
+			});
+			
+			$('#NAME').on('focus', function() {
+				console.log("clicked value = " + document.myForm.Name.value);
+			});
+			
+		}
+
+	);
+</script>
+
+<body>
+	<h1>JavaScript Form Validation Examples</h1>
+<body>
+	<form action="form.html" name="myForm" onsubmit="return(validate());"
+		method="POST" id="formone">
+		<table cellspacing="2" cellpadding="2" border="1">
+			<tr>
+				<td><input type="text" name="Name" value="" id="NAME"
+					placeholder="Enter Name" autocomplete="off" /></td>
+			</tr>
+			<tr>
+				<td><input type="text" name="EMail" value="" id="emailID"
+					placeholder="Enter Email" /></td>
+			</tr>
+			<tr>
+				<td><input type="text" name="Zip" id="ZipID" value="12345"
+					placeholder="Enter Zip Code" /></td>
+			</tr>
+			<tr>
+				<td><select name="Country" id="CountryId">
+						<option value="USA">[choose yours] | Select Country</option>
+						<option value="USA">USA</option>
+						<option value="UK">UK</option>
+						<option value="UAE">UAE</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td><input type="password" name="password" value=""
+					id="password" placeholder="Password" /></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Submit Button" /></td>
+			</tr>
+		</table>
+	</form>
+	<br>
+	<br>
+	<input type="submit" value="Outside Form" />
+
+</body>
+
+
+</body>
+
+
+</html>

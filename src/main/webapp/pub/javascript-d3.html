@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>Javascript Day 3 Examples</title>
+</head>
+
+<script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+
+
+<script>	
+	
+$( document ).ready(
+		
+	function() {
+		let title = document.title;
+		console.log(title);
+		
+		let domain = document.domain;
+		console.log(domain);
+		
+		// find document tag by id
+		let ptag = document.getElementById('ptag');
+	    console.log(ptag.textContent);
+	    console.log('id = ' + ptag.id);
+	    console.log('name = ' + ptag.getAttribute("name"));
+	    console.log('another attribute = ' + ptag.getAttribute("another"));
+	    
+	    ptag.textContent = "this is new text content";
+	    
+	    // select elements by name and loop over them.
+	    let items = document.getElementsByName('elements');
+	    for (i in items) {
+	    	console.log(items[i]);
+	    }
+	    
+	    items = document.getElementsByTagName('p');
+	    for (i in items) {
+	    	console.log(items[i]);
+	    }
+	    
+	    // parrent of the ptag element
+	    console.log("parrent = " + ptag.parentElement.getAttribute("name"));
+	    
+	    // inner html
+	    let spantag =document.getElementById('spantag');
+	    let text = spantag.textContent;
+	    spantag.innerHTML = "<b>" + text + "</b><ul><li>list item</li></ul>";
+	    
+	    // append child
+	    let appendElement = document.getElementById('appendElement');
+	    
+	    var newElement = document.createElement('li');
+	    newElement.textContent = "node.appendChild(): Add a node as the last child of a parent element";
+	    appendElement.appendChild(newElement);
+
+	}				
+);
+
+document.addEventListener('keydown', function(event) {
+    console.log('key: ' + event.keyCode);
+    console.log('key: ' + event.key);
+    console.log('code: ' + event.code);
+});
+
+
+
+
+function clicked() {
+	 // append child
+    let appendElement = document.getElementById('appendElement');
+    
+    var newElement = document.createElement('li');
+    newElement.textContent = "node.appendChild(): Add a node as the last child of a parent element";
+    appendElement.appendChild(newElement);
+}
+
+</script>
+
+<body>
+	<h1>JavaScript Examples</h1>
+
+	<div name="parrentOfPtag">
+		<p id="ptag" name="ptag-name" another="attribute">text in the paragraph tag with id = ptag</p>
+		
+		<p name="elements" another="attribute">element 1</p>
+		<p name="elements" another="attribute">element 2</p>
+		<p name="elements" another="attribute">element 3</p>
+	</div>
+	
+	<div>
+		<span id="spantag">some text in a span</span>
+	</div>
+	
+	<div>
+		<ul id="appendElement">
+			<li>Element 1</li>
+			<li>Element 2</li>
+			<li>Element 3</li>
+		</ul>
+	</div>
+	<div>
+		<button type="button" onclick="clicked()">Click Me!</button>
+	</div>
+</body>
+
+</html>
