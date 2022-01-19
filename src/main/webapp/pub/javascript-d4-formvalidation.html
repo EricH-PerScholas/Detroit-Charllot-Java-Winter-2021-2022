@@ -121,9 +121,23 @@ input[type=text]:focus {
 				console.log("clicked value = " + document.myForm.Name.value);
 			});
 			
+			$( window ).resize(function() {
+				setSize();
+			});
+			
+			console.log("userAgent = " + navigator.userAgent)
+			
+			setSize();
 		}
 
 	);
+	
+	function setSize() {
+		document.getElementById("ow").innerHTML = window.outerWidth; 
+	      document.getElementById("oh").innerHTML = window.outerHeight; 
+	      document.getElementById("iw").innerHTML = window.innerWidth; 
+	      document.getElementById("ih").innerHTML = window.innerHeight;
+	}
 </script>
 
 <body>
@@ -164,6 +178,25 @@ input[type=text]:focus {
 	<br>
 	<br>
 	<input type="submit" value="Outside Form" />
+	<br>
+	<br>
+
+	<table border="1" cellpadding="3">
+		<tr>
+			<th>outerWidth:</th>
+			<td id="ow"></td>
+			<th>outerHeight:</th>
+			<td id="oh">
+		</tr>
+		<tr>
+			<th>innerWidth:</th>
+			<td id="iw"></td>
+			<th>innerHeight:</th>
+			<td id="ih"></td>
+		</tr>
+	</table>
+	
+
 
 </body>
 
