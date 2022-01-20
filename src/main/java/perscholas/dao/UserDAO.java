@@ -22,6 +22,10 @@ public class UserDAO {
 		em = emf.createEntityManager();
 	}
 	
+	public void close() {
+		em.close();
+	}
+	
 	
 	public User findByIdNative(Integer id) {
 		try {

@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -40,15 +42,13 @@ public class User {
 	@Column(name = "last_name")
 	private String lastName;
 
-	@OneToMany(mappedBy = "user")
-	private List<UserRole> userRoles = new ArrayList<UserRole>();
-	
-	
+//	@OneToMany(mappedBy = "user")
+//	private List<UserRole> userRoles = new ArrayList<UserRole>();
+//
 	@Override
 	public String toString() {
 		return ReflectionToStringBuilder.toString(this, ToStringStyle.MULTI_LINE_STYLE);
 	}
-
 
 	public Integer getId() {
 		return id;
@@ -98,4 +98,11 @@ public class User {
 		this.lastName = lastName;
 	}
 
+//	public List<UserRole> getUserRoles() {
+//		return userRoles;
+//	}
+//
+//	public void setUserRoles(List<UserRole> userRoles) {
+//		this.userRoles = userRoles;
+//	}
 }

@@ -2,6 +2,7 @@ package perscholas.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,10 +22,12 @@ public class UserRole {
 	@Column(name = "user_role")
 	private String userRole;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	private User user;
 
+	
+	
 	public Integer getId() {
 		return id;
 	}

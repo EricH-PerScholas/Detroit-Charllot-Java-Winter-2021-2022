@@ -2,6 +2,8 @@ package perscholas;
 
 import java.util.List;
 
+import com.google.gson.Gson;
+
 import perscholas.dao.UserDAO;
 import perscholas.entity.User;
 
@@ -24,6 +26,14 @@ public class Main {
 		for ( User u : users ) {
 			System.out.println(u);
 		}
+		userDao.close();
+
+		
+		Gson gson = new Gson();
+		String jsonInString = gson.toJson(users);
+		System.out.println(jsonInString);
+		
+		System.exit(0);
 		
 		System.out.println("====================================");
 		
