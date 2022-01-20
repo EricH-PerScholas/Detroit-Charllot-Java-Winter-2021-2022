@@ -57,7 +57,43 @@ $( document ).ready(
 	    var newElement = document.createElement('li');
 	    newElement.textContent = "node.appendChild(): Add a node as the last child of a parent element";
 	    appendElement.appendChild(newElement);
-
+		
+	    // eval runs code that is passed to it
+	    let x = 10;
+	    let y = 20;
+	    let code = "x + y";
+	    let result = eval(code);
+	   
+	    console.log("eval result = " + result);
+	    
+	    let code2 = "console.log('this executed')";
+	    console.log(eval(code2));
+	    
+	    let formula = prompt("Enter Formula");
+	    console.log(eval(formula));
+	    
+	    // typecasting
+	    let answer = 10 + "10";
+	    console.log(answer);
+	    
+	    let answer2 = 10 + 10;
+	    console.log(answer2);
+	    
+	    if ( 10 == "10" ) {
+	    	// yes this will execute because it compares the value and not the type
+	    	console.log("will this execute");
+	    }
+	    
+	    if ( 10 === "10") {
+	    	// no this will not execute because they are not the same type
+	    	console.log("will this execute");
+	    }
+	    
+	    if ( 10 === 10 ) {
+	    	// yes this will execute because both are of the same type and value
+	    	console.log("will this execute");
+	    }
+	    
 	}				
 );
 
@@ -78,6 +114,8 @@ function clicked() {
     newElement.textContent = "node.appendChild(): Add a node as the last child of a parent element";
     appendElement.appendChild(newElement);
 }
+
+
 
 </script>
 

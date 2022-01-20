@@ -77,6 +77,11 @@ $( document ).ready(
 		console.log("join = " + exampleArray.join(" "));
 		console.log("join = " + exampleArray.join("|"));
 		
+		console.log('============ for each =========')
+		exampleArray.forEach(value => {
+			console.log(value);
+		});
+		
 		
 		let str = "A B C D E F G H I J K L M N O P Q";
 		let splitArr = str.split(" ");
@@ -94,6 +99,8 @@ $( document ).ready(
 			let value = person[key];
 			console.log(key + ' = ' + value);
 		}
+		
+		
 		
 		// delete property
 		console.log('=========== delete property =========')
@@ -116,6 +123,70 @@ $( document ).ready(
 
 	}
 );
+
+
+function forEachFunction(value) {
+	console.log("for each calling a function " + value)
+}
+
+
+$( document ).ready(
+		
+		function() {
+			let exampleArray = ["orange", "purple", "green", "red", "blue", "cyan"];
+			console.log("join = " + exampleArray.join(" "));
+			console.log("join = " + exampleArray.join("|"));
+			
+			console.log('============ for each =========')
+			// here is one way of doing a foreach where we use an anonymous block of 
+			// inline code
+			exampleArray.forEach(value => {
+				console.log("for each inlinecode = " + value);
+			});
+			
+			console.log('============ for each with function  =========')
+			exampleArray.forEach(value => forEachFunction(value));
+		}
+	);
+	
+	
+</script>
+
+<script>
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
+	console.log("========================= help me ====================");
+	var arr = [2, 4, 5, 8, 10, , 100 ];
+	console.log(arr);
+	arr.forEach(function(value, index, array) {
+	    array[index] = value * value
+	});
+	//https://www.w3schools.com/js/js_booleans.asp
+	console.log(arr.reverse().filter(function(x) {
+	    return x % 5
+	}));
+	console.log("========================= help me ====================");
+	
+	console.log("========================= map example ====================");
+	const numbers = [65, 44, 12, 4];
+	const newArr = numbers.map(myFunction)
+
+	function myFunction(num) {
+	  return num * 10;
+	}
+	console.log(numbers);
+	console.log(newArr)
+	
+	// a map returns an array of the result of the function
+	// for each does not return an array.
+	// both will loop over the array and apply the function to each value
+	
+	//map() creates a new array from calling a function for every array element.
+//map() calls a function once for each element in an array.
+//map() does not execute the function for empty elements.
+//map() does not change the original array.
+	
+	
+	console.log("========================= map example ====================");
 
 </script>
 
