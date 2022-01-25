@@ -4,7 +4,7 @@
 
 <h1>User Registration</h1>
 
-<form method="get" action="/indexSubmit">
+<form method="GET" action="/indexSubmit">
 	
 	Username <input type="text" name="username">
 	<br>
@@ -16,7 +16,7 @@
 		<option>Option 2</option>
 	</select>
 	<br>
-	<button type="submit">Login</button>
+	<button type="submit">Submit</button>
 	
 </form>
 
