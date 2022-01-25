@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class IndexController {
 
+	
 	@RequestMapping(value = { "/", "/index" }, method = RequestMethod.GET)
 	public ModelAndView index() throws Exception {
 		ModelAndView response = new ModelAndView();
@@ -17,18 +18,23 @@ public class IndexController {
 
 		return response;
 	}
-	
+
 	@RequestMapping(value = "/indexSubmit", method = RequestMethod.GET)
 	public ModelAndView indexSubmit(ServletRequest request) throws Exception {
-		
-		System.out.println("username = " + request.getParameter("username") );	
-		System.out.println("firstName = " + request.getParameter("firstName") );		
-		
-		
+
+		String username = request.getParameter("username");
+		String firstName = request.getParameter("firstName");
+
+		System.out.println("username = " + username);
+		System.out.println("firstName = " + firstName);
+
 		ModelAndView response = new ModelAndView();
-		response.setViewName("index");
+		response.addObject("username", username);
+		response.addObject("firstName",firstName);
+
+		response.setViewName("indexSubmit");
 
 		return response;
 	}
-	
+
 }
