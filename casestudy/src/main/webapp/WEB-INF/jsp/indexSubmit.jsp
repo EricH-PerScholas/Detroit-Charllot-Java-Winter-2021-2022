@@ -3,7 +3,7 @@
 <body>
 <h1>Index submit page</h1>
 
-<h2>Hello ${firstName} your username is ${username}</h2>
+Hello <b>${firstName}</b> your username is <b>${username}</b>
 
 </body>
 

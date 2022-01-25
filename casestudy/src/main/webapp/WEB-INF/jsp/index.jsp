@@ -1,6 +1,10 @@
 <html>
 
+
+<link rel="stylesheet" href="/pub/css/style.css">
+
 <body>
+
 
 <h1>User Registration</h1>
 
@@ -13,7 +17,7 @@
 	Dropdown <select name="dropdown">
 		<option>Option 1</option>
 		<option>Option 2</option>
-		<option>Option 2</option>
+		<option>Option 3</option>
 	</select>
 	<br>
 	<button type="submit">Submit</button>

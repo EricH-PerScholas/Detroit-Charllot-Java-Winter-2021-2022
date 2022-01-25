@@ -21,13 +21,18 @@ public class IndexController {
 
 	@RequestMapping(value = "/indexSubmit", method = RequestMethod.GET)
 	public ModelAndView indexSubmit(ServletRequest request) throws Exception {
-
+		
+		// these 3 are the same name as on the html form
 		String username = request.getParameter("username");
 		String firstName = request.getParameter("firstName");
+		String dropdown = request.getParameter("dropdown");
 
 		System.out.println("username = " + username);
 		System.out.println("firstName = " + firstName);
+		System.out.println("dropdown = " + dropdown);
 
+		
+		// this is going to the JSP page
 		ModelAndView response = new ModelAndView();
 		response.addObject("username", username);
 		response.addObject("firstName",firstName);
