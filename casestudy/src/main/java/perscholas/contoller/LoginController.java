@@ -11,9 +11,9 @@ import org.springframework.web.servlet.ModelAndView;
 public class LoginController {
 	
 	// create a login controller
-	// create a success.jsp
 	// create a login.jsp page with a form that has username and password
-	// make the form submit to loginSubmit 
+	// create a success.jsp
+	// make the form submit to loginSubmit ( create new method on controller )
 	// in the loginSubmit function check if the username is tom and the password is jerry
 	// if true then add tom to the session and return the success view
 	// otherwise return the login view
