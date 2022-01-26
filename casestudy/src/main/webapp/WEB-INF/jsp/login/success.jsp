@@ -1,5 +1,7 @@
 <html>
-User ${username } is logged in ( from session )
+User <b>${usernameSessionKey }</b> is logged in ( from session )
 <br>
-Logged in user = ${loggedInUser } ( from response model )
+Logged in user = <b>${loggedInUser }</b> ( from response model )
+<br>
+<a href="/logout">Logout</a>
 </html>
