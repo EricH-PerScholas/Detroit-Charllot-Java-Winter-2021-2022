@@ -23,6 +23,30 @@ public class LoginController {
 	// otherwise return the login view
 	// in the login method, check if the username tom is in the session and if so return the success view
 	// do not worry about using post - use get on the form.
+	
+	// the goal is to have the correct URL showing for the correct page
+	// the form submission is invisible to the user, as in it will not show in the browser url
+	
+	// test 1
+	// goto /login when the user has not been logged in
+	// login and submit 
+	// this will execute through the loginSubit method and the success method
+	// make sure you are on the /success page
+	
+	// test 2
+	// click logout and make sure you goto the /login page 
+	// and /login is in the url
+	
+	// test 3
+	// goto /success and make sure that you are redirected to the /login page
+	
+	// test 4
+	// login with failed credentials and make sure you are on the /login page again
+	
+	// test 5
+	// login with tom and jerry whic will be on the success page and /success in the url
+	// type /login on the url and make sure you are redirected to /scuccess and show the success page
+	
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView login(HttpServletRequest request, HttpSession session) throws Exception {
@@ -84,8 +108,7 @@ public class LoginController {
 			// but is not in the session
 			response.setViewName("redirect:/login");
 		}
-		
-		
+			
 		return response;
 	}
 
