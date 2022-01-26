@@ -14,6 +14,7 @@ import perscholas.form.LoginFormBean;
 @Controller
 public class LoginController {
 
+	// exercise 1
 	// create a login controller
 	// create a login.jsp page with a form that has username and password
 	// create a success.jsp
@@ -28,6 +29,7 @@ public class LoginController {
 	// the goal is to have the correct URL showing for the correct page
 	// the form submission is invisible to the user, as in it will not show in the browser url
 
+	// do these test cases in the debugger
 	// test 1
 	// goto /login when the user has not been logged in
 	// login and submit 
