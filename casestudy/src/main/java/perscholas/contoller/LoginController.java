@@ -1,6 +1,5 @@
 package perscholas.contoller;
 
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -44,9 +43,10 @@ public class LoginController {
 	// login with failed credentials and make sure you are on the /login page again
 	
 	// test 5
-	// login with tom and jerry whic will be on the success page and /success in the url
-	// type /login on the url and make sure you are redirected to /scuccess and show the success page
-	
+	// login with tom and jerry which will be on the success page and /success in the url
+	// type /login on the url and make sure you are redirected to /success and show the success page
+
+	private static String SESSION_KEY = "usernameSessionKey";
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView login(HttpServletRequest request, HttpSession session) throws Exception {
@@ -55,11 +55,11 @@ public class LoginController {
 		// if not logged in ( user is not in the session ) then show the login page
 		ModelAndView response = new ModelAndView();
 
-		String username = (String) session.getAttribute("usernameSessionKey");
+		String username = (String) session.getAttribute(SESSION_KEY);
 		if (StringUtils.equals(username, "tom")) {
 			// when using redirect you will use the URL of the controller method 
 			// that you want to display.  In this case the /success RequestMapping
-			response.setViewName("redirect:/success");
+			response.setViewName("redirect:http://localhost:8080/success");
 			
 		} else {
 			// when using the name of a view we use the path to the JSP page
@@ -80,11 +80,12 @@ public class LoginController {
 
 		// if ("tom".equals(username) && "jerry".equals(password) ){
 		if (StringUtils.equals(username, "tom") && StringUtils.equals(password, "jerry")) {
-			session.setAttribute("usernameSessionKey", username);
+			session.setAttribute(SESSION_KEY, username);
 			response.setViewName("redirect:/success");
 		} else {
 			// invalid login
-			session.setAttribute("username", null);
+			// setting session to null to ensure the user is logged out
+			session.setAttribute(SESSION_KEY, null);
 			response.setViewName("redirect:/login");
 		}
 
@@ -98,10 +99,12 @@ public class LoginController {
 		// if not logged in ( user is not in the session ) then show the login page
 		ModelAndView response = new ModelAndView();
 		
-		String username = (String) session.getAttribute("usernameSessionKey");
+		String username = (String) session.getAttribute(SESSION_KEY);
 		if (StringUtils.equals(username, "tom")) {
+			// add the username to the response model so that it can be displayed on the jsp page.
 			response.addObject("loggedInUser", username);
-			response.setViewName("/login/success");
+
+			response.setViewName("login/success");
 		} else {
 			// need to implement here to redirect back to login page
 			// because it means the user has requested the /success url
