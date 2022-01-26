@@ -2,10 +2,10 @@
 
 <body>
 
-<form action="/loginSubmit">
-	Username : <input type="text" name="username">
+<form action="/loginFormSubmit">
+	Username : <input type="text" name="usernameFromForm">
 	<br>
-	Password: <input type="password" name="password">
+	Password: <input type="password" name="passwordFromForm">
 	
 	<button type="submit">Submit</button>
 

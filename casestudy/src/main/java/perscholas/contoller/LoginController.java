@@ -26,11 +26,15 @@ public class LoginController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView login(HttpServletRequest request, HttpSession session) throws Exception {
+		// this method is checking to see if the user is logged in by looking at the session
+		// if logged in ( user is in the session ) then show the success page.
+		// if not logged in ( user is not in the session ) then show the login page
 		ModelAndView response = new ModelAndView();
 
-		String username = (String) session.getAttribute("username");
+		String username = (String) session.getAttribute("usernameSessionKey");
 		if (StringUtils.equals(username, "tom")) {
-			response.setViewName("login/success");			
+			response.setViewName("login/success");
+			response.addObject("loggedInUser", username);
 		} else {
 			response.setViewName("login/login");
 		}
@@ -38,16 +42,17 @@ public class LoginController {
 		return response;
 	}
 
-	@RequestMapping(value = "/loginSubmit", method = RequestMethod.GET)
-	public ModelAndView indexSubmit(HttpServletRequest request, HttpSession session) throws Exception {
+	@RequestMapping(value = "/loginFormSubmit", method = RequestMethod.GET)
+	public ModelAndView loginSubit(HttpServletRequest request, HttpSession session) throws Exception {
 		ModelAndView response = new ModelAndView();
 
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
+		String username = request.getParameter("usernameFromForm");
+		String password = request.getParameter("passwordFromForm");
 
 		// if ("tom".equals(username) && "jerry".equals(password) ){
 		if (StringUtils.equals(username, "tom") && StringUtils.equals(password, "jerry")) {
-			session.setAttribute("username", username);
+			session.setAttribute("usernameSessionKey", username);
+			response.addObject("loggedInUser", username);
 			response.setViewName("login/success");
 		} else {
 			// invalid login
