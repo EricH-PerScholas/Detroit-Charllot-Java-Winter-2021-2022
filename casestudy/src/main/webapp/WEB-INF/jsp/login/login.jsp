@@ -2,7 +2,7 @@
 
 <body>
 
-<form action="/loginFormSubmit">
+<form action="/loginFormSubmit2">
 	Username : <input type="text" name="usernameFromForm">
 	<br>
 	Password: <input type="password" name="passwordFromForm">

@@ -7,7 +7,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import perscholas.form.LoginFormBean;
 
 @Controller
 public class LoginController {
@@ -70,17 +72,41 @@ public class LoginController {
 		return response;
 	}
 	
-	
+	// using the @RequestParam in the method signature is a better way of getting form variables
+	// that using request.getParameter
 	@RequestMapping(value = "/loginFormSubmit", method = RequestMethod.GET)
-	public ModelAndView loginSubit(HttpServletRequest request, HttpSession session) throws Exception {
+	public ModelAndView loginSubmit(LoginFormBean form, @RequestParam String passwordFromForm, @RequestParam String usernameFromForm,
+								   HttpServletRequest request, HttpSession session  ) throws Exception {
 		ModelAndView response = new ModelAndView();
 
+		System.out.println("usernameFromFrom using @RequestParam = " + usernameFromForm);
+		System.out.println("usernameFromFrom using LoginFormBean = " + form.getUsernameFromForm());
 		String username = request.getParameter("usernameFromForm");
 		String password = request.getParameter("passwordFromForm");
 
 		// if ("tom".equals(username) && "jerry".equals(password) ){
 		if (StringUtils.equals(username, "tom") && StringUtils.equals(password, "jerry")) {
 			session.setAttribute(SESSION_KEY, username);
+			response.setViewName("redirect:/success");
+		} else {
+			// invalid login
+			// setting session to null to ensure the user is logged out
+			session.setAttribute(SESSION_KEY, null);
+			response.setViewName("redirect:/login");
+		}
+
+		return response;
+	}
+
+	@RequestMapping(value = "/loginFormSubmit2", method = RequestMethod.GET)
+	public ModelAndView loginFormSubmit(LoginFormBean form, HttpSession session  ) throws Exception {
+		ModelAndView response = new ModelAndView();
+
+		String username = form.getUsernameFromForm();
+		String password = form.getPasswordFromForm();
+
+		if (StringUtils.equals(username, "tom") && StringUtils.equals(password, "jerry")) {
+			session.setAttribute(SESSION_KEY, form.getUsernameFromForm());
 			response.setViewName("redirect:/success");
 		} else {
 			// invalid login
