@@ -33,9 +33,13 @@ public class LoginController {
 
 		String username = (String) session.getAttribute("usernameSessionKey");
 		if (StringUtils.equals(username, "tom")) {
+			// when using redirect you will use the URL of the controller method 
+			// that you want to display.  In this case the /success RequestMapping
 			response.setViewName("redirect:/success");
-			response.addObject("loggedInUser", username);
+			
 		} else {
+			// when using the name of a view we use the path to the JSP page
+			// within the jsp folder.
 			response.setViewName("login/login");
 		}
 
@@ -53,7 +57,6 @@ public class LoginController {
 		// if ("tom".equals(username) && "jerry".equals(password) ){
 		if (StringUtils.equals(username, "tom") && StringUtils.equals(password, "jerry")) {
 			session.setAttribute("usernameSessionKey", username);
-			response.addObject("loggedInUser", username);
 			response.setViewName("redirect:/success");
 		} else {
 			// invalid login
@@ -65,12 +68,24 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/success", method = RequestMethod.GET)
-	public ModelAndView success(HttpServletRequest request, HttpSession session) throws Exception {
+	public ModelAndView success(HttpSession session) throws Exception {
 		// this method is checking to see if the user is logged in by looking at the session
 		// if logged in ( user is in the session ) then show the success page.
 		// if not logged in ( user is not in the session ) then show the login page
 		ModelAndView response = new ModelAndView();
-		response.setViewName("/login/success");
+		
+		String username = (String) session.getAttribute("usernameSessionKey");
+		if (StringUtils.equals(username, "tom")) {
+			response.addObject("loggedInUser", username);
+			response.setViewName("/login/success");
+		} else {
+			// need to implement here to redirect back to login page
+			// because it means the user has requested the /success url
+			// but is not in the session
+			response.setViewName("redirect:/login");
+		}
+		
+		
 		return response;
 	}
 
