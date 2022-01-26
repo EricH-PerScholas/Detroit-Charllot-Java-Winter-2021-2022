@@ -55,8 +55,6 @@ public class LoginController {
 			response.setViewName("login/login");
 		}
 
-		response.setViewName("indexSubmit");
-
 		return response;
 	}
 
