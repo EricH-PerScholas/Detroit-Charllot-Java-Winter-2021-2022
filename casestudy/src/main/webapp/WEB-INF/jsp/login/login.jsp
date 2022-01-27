@@ -1,6 +1,4 @@
-<html>
-
-<body>
+<jsp:include page="../include/header.jsp" />
 
 <form action="/loginFormSubmit2">
     <h1 style="color:red">${errorMessage}</h1>
@@ -13,6 +11,4 @@
 
 </form>
 
-</body>
-
-</html>
+<jsp:include page="../include/footer.jsp" />
