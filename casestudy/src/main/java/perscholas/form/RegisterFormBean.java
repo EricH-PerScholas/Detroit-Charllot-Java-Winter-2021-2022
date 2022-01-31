@@ -5,6 +5,7 @@ import lombok.Setter;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.hibernate.validator.constraints.Length;
+import perscholas.validation.EmailUnique;
 
 import javax.validation.constraints.*;
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class RegisterFormBean {
     // making sure the email is not null and is not empty as in ""
     @NotEmpty(message = "Email is required.")
     @Pattern(regexp = "^.+@.+$" , message = "Invalid email format")
+    @EmailUnique(message = "Email must be unique")
     private String email;
 
     @Length(min = 1, max = 5,
@@ -38,6 +40,8 @@ public class RegisterFormBean {
     // this list is populated by the controller with all error messages
     // in the binding result.
     private List<String> errorMessages = new ArrayList<>();
+
+
 
     @Override
     public String toString() {
