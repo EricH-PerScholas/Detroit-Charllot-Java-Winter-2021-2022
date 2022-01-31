@@ -34,6 +34,7 @@ public class RegistrationController {
 
         if (errors.hasErrors()) {
             for ( FieldError error : errors.getFieldErrors() ) {
+                // add the error message to the errorMessages list in the form bean
                 form.getErrorMessages().add(error.getDefaultMessage());
                 System.out.println("error field = " + error.getField() + " message = " + error.getDefaultMessage());
             }

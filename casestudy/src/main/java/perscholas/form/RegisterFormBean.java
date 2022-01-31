@@ -35,6 +35,8 @@ public class RegisterFormBean {
     private String password;
     private String confirmPassword;
 
+    // this list is populated by the controller with all error messages
+    // in the binding result.
     private List<String> errorMessages = new ArrayList<>();
 
     @Override
