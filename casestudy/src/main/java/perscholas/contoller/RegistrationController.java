@@ -20,18 +20,30 @@ public class RegistrationController {
         ModelAndView response = new ModelAndView();
         response.setViewName("registration/register");
 
+        RegisterFormBean form = new RegisterFormBean();
+        response.addObject("formBeanKey", form);
+
         return response;
     }
 
     @RequestMapping(value = "/registerSubmit", method = RequestMethod.GET)
     public ModelAndView registerSubmit(@Valid RegisterFormBean form, BindingResult errors) throws Exception {
         ModelAndView response = new ModelAndView();
-        response.setViewName("registration/register");
 
         System.out.println(form);
 
-        for ( FieldError error : errors.getFieldErrors() ) {
-            System.out.println("error field = " + error.getField() + " message = " + error.getDefaultMessage());
+        if (errors.hasErrors()) {
+            for ( FieldError error : errors.getFieldErrors() ) {
+                System.out.println("error field = " + error.getField() + " message = " + error.getDefaultMessage());
+            }
+            response.addObject("formBeanKey", form);
+            response.setViewName("registration/register");
+
+        } else {
+            // there are no errors on the form submission lets redirect to the login page
+            // right here that you would save the new user registration to the database
+            // however we will get to this later in the week when spring JPA
+            response.setViewName("redirect:/login");
         }
 
         return response;
