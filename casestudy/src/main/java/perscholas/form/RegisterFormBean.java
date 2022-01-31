@@ -6,6 +6,7 @@ import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.hibernate.validator.constraints.Length;
 import perscholas.validation.EmailUnique;
+import perscholas.validation.TwoFieldsAreEqual;
 
 import javax.validation.constraints.*;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@TwoFieldsAreEqual(fieldOneName = "confirmPassword", fieldTwoName = "password", message = "Password and Conform Password must be the same.")
 public class RegisterFormBean {
 
     // making sure the email is not null and is not empty as in ""
