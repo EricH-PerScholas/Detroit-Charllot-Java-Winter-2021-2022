@@ -7,6 +7,8 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Getter
@@ -32,6 +34,8 @@ public class RegisterFormBean {
 
     private String password;
     private String confirmPassword;
+
+    private List<String> errorMessages = new ArrayList<>();
 
     @Override
     public String toString() {

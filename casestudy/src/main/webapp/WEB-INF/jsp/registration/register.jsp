@@ -1,3 +1,5 @@
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+
 <jsp:include page="../include/header.jsp" />
 
 <form method="GET" action="/registration-url-path/registerSubmit">
@@ -32,6 +34,12 @@
 	<button type="submit">Submit</button>
 
 </form>
+
+<div>
+    <c:forEach var="message" items="${formBeanKey.errorMessages}"  varStatus="status">
+        <span style="color:red">${message}</span><br>
+    </c:forEach>
+</div>
 
 
 <jsp:include page="../include/footer.jsp" />

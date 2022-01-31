@@ -34,8 +34,10 @@ public class RegistrationController {
 
         if (errors.hasErrors()) {
             for ( FieldError error : errors.getFieldErrors() ) {
+                form.getErrorMessages().add(error.getDefaultMessage());
                 System.out.println("error field = " + error.getField() + " message = " + error.getDefaultMessage());
             }
+
             response.addObject("formBeanKey", form);
             response.setViewName("registration/register");
 
