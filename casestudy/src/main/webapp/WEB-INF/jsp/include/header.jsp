@@ -34,8 +34,14 @@
 <body>
 
 <!-- implement any html you need to show on every page as a header here -->
-<table>
-<tr><td><a href="/logout">Logout</a></td></tr>
+<table cellpadding="5">
+<tr>
+    <td><a href="/logout">Logout</a></td>
+    <td>|</td>
+    <td><a href="/registration-url-path/register">User Registration</a></td>
+</tr>
 </table>
+
+<hr>
 
 <div class="container">

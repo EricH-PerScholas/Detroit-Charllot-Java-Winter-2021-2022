@@ -2,7 +2,7 @@
 
 <form method="GET" action="/registration-url-path/registerSubmit">
 
-    <table>
+    <table cellpadding="5">
         <tr>
             <td>Email</td>
             <td><input type="text" name="email"><td>
