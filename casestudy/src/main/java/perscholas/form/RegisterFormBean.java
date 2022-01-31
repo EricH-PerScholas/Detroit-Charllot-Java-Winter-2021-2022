@@ -25,6 +25,7 @@ public class RegisterFormBean {
     @NotEmpty(message = "Last Name is required.")
     private String lastName;
 
+    // these annotations work on integer values only
     @Min(value=3, message="Age must be at least 3")
     @Max(value=10, message="Age must be at most 10")
     private Integer age;
