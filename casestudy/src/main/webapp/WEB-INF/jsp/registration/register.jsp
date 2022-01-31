@@ -13,7 +13,11 @@
         </tr>
         <tr>
             <td>Last Name</td>
-            <td><input type="text" name="last_name"><td>
+            <td><input type="text" name="lastName"><td>
+        </tr>
+        <tr>
+            <td>Age</td>
+            <td><input type="text" name="age"><td>
         </tr>
         <tr>
             <td>Password</td><td>
