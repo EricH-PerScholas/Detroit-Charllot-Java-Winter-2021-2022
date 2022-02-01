@@ -36,6 +36,9 @@ public class RegisterFormBean {
     @Max(value=10, message="Age must be at most 10")
     private Integer age;
 
+    @NotEmpty(message = "Username is required")
+    private String username;
+
     private String password;
     private String confirmPassword;
 

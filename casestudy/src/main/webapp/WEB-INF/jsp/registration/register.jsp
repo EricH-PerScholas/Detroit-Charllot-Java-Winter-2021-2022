@@ -6,6 +6,10 @@
 
     <table cellpadding="5">
         <tr>
+            <td>Username</td>
+            <td><input type="text" name="username" value="${formBeanKey.username}"><td>
+        </tr>
+        <tr>
             <td>Email</td>
             <td><input type="text" name="email" value="${formBeanKey.email}"><td>
         </tr>

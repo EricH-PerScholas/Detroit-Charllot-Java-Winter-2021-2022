@@ -1,11 +1,14 @@
 package perscholas.contoller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import perscholas.database.dao.UserDAO;
+import perscholas.database.entity.User;
 import perscholas.form.RegisterFormBean;
 
 import javax.validation.Valid;
@@ -14,6 +17,9 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/registration-url-path")
 public class RegistrationController {
+
+    @Autowired
+    private UserDAO userDao;
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public ModelAndView register() throws Exception {
@@ -46,6 +52,16 @@ public class RegistrationController {
             // there are no errors on the form submission lets redirect to the login page
             // right here that you would save the new user registration to the database
             // however we will get to this later in the week when spring JPA
+            User user = new User();
+
+            user.setEmail(form.getEmail());
+            user.setFirstName(form.getFirstName());
+            user.setLastName(form.getLastName());
+            user.setPassword(form.getPassword());
+            user.setUsername(form.getUsername());
+
+            userDao.save(user);
+
             response.setViewName("redirect:/login");
         }
 
