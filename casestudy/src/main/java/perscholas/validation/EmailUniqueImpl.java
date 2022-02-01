@@ -6,12 +6,16 @@ import javax.validation.ConstraintValidatorContext;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import perscholas.database.dao.UserDAO;
 
 
 public class EmailUniqueImpl implements ConstraintValidator<EmailUnique, String> {
 
     public static final Logger LOG = LoggerFactory.getLogger(EmailUniqueImpl.class);
 
+    @Autowired
+    private UserDAO userDao;
 
     @Override
     public void initialize(EmailUnique constraintAnnotation) {

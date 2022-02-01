@@ -39,6 +39,8 @@
     <td><a href="/logout">Logout</a></td>
     <td>|</td>
     <td><a href="/registration-url-path/register">User Registration</a></td>
+    <td>|</td>
+    <td><a href="/registration-url-path/userList">User Search</a></td>
 </tr>
 </table>
 
