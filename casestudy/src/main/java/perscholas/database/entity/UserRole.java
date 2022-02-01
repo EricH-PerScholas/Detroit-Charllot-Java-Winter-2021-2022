@@ -1,4 +1,4 @@
-package perscholas.entity;
+package perscholas.database.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
