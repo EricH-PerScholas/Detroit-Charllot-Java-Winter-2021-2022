@@ -34,6 +34,13 @@ public class Manager {
     @Autowired
     private Worker3 worker3;
 
+    // this is the same way of doing it as the @Autowired Worker3 above
+    // this is more prevalent in test driven design applications
+//    @Autowired
+//    public void setFooFormatter(Worker3 w3) {
+//        this.worker3 = w3;
+//    }
+
     public Manager( ) {
         System.out.println("I am in the manager constructor");
         // this executes before autowired
