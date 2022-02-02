@@ -1,4 +1,4 @@
-package perscholas.form;
+package perscholas.database.form;
 
 import lombok.Getter;
 import lombok.Setter;

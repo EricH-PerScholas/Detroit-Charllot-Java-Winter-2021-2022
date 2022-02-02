@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import perscholas.database.dao.UserDAO;
 import perscholas.database.entity.User;
-import perscholas.form.RegisterFormBean;
+import perscholas.database.form.RegisterFormBean;
 
 import javax.validation.Valid;
 import java.util.List;
