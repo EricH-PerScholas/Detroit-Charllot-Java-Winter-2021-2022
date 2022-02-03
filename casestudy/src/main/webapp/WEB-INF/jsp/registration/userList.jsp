@@ -34,8 +34,8 @@
             <td>${user.firstName}</td>
             <td>${user.lastName}</td>
             <td>${user.password}</td>
-            <td><a href="/registration-url-path/register?id=${user.id}">Edit</td>
-            <td><a href="/registration-url-path/deleteUser?id=${user.id}">Delete</td>
+            <td><a class="btn btn-primary"  role="button" href="/registration-url-path/register?id=${user.id}">Edit</a></td>
+            <td><a class="btn btn-danger" role="button" href="/registration-url-path/deleteUser?id=${user.id}">Delete</a></td>
         </tr>
     </c:forEach>
 </table>
