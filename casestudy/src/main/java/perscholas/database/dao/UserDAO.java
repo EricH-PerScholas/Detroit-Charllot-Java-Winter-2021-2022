@@ -9,7 +9,7 @@ import perscholas.database.entity.UserRole;
 
 import java.util.List;
 
-@Repository
+
 public interface UserDAO extends JpaRepository<User, Long> {
 
     public User findById(@Param("id") Integer id);
@@ -19,6 +19,11 @@ public interface UserDAO extends JpaRepository<User, Long> {
     public List<User> findByLastName(@Param("lastName") String lastName);
 
     public List<User> findByFirstNameAndLastName(@Param("firstName") String firstName, @Param("lastName") String lastName);
+
+    public List<User> findByFirstNameContainingIgnoreCaseAndLastNameContainingIgnoreCase(@Param("firstName") String firstName, @Param("lastName") String lastName);
+
+    //@Query("select u from User u where u.firstName = :firstName or u.lastName = :lastName")
+    public List<User> findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(@Param("firstName") String firstName, @Param("lastName") String lastName);
 
     @Query("select u from User u where u.firstName = :firstName")
     public List<User> findByFirstName(String firstName);

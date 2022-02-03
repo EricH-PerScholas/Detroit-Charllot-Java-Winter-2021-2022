@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import perscholas.database.dao.UserDAO;
+import perscholas.database.entity.User;
 
 
 public class EmailUniqueImpl implements ConstraintValidator<EmailUnique, String> {
@@ -16,6 +17,7 @@ public class EmailUniqueImpl implements ConstraintValidator<EmailUnique, String>
 
     @Autowired
     private UserDAO userDao;
+
 
     @Override
     public void initialize(EmailUnique constraintAnnotation) {
@@ -35,9 +37,10 @@ public class EmailUniqueImpl implements ConstraintValidator<EmailUnique, String>
             return true;
         }
 
-        boolean passes = ! StringUtils.equals(value, "a@b.com");
+        //boolean passes = ! StringUtils.equals(value, "a@b.com");
+        User user = userDao.findByEmail(value);
 
-        return ( passes );
+        return ( user == null );
     }
 
 }

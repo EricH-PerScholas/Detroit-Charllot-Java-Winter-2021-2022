@@ -3,11 +3,7 @@
    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
        <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
       <logger name="org.springframework" level="INFO" />
-      <logger name="perscholas" level="INFO" />
-      <logger name="org.apache.http.wire" level="INFO" />
-      <logger name="org.mongo" level="WARN" />  
-      <logger name="org.mongodb" level="WARN" /> 
-      <Logger name="org.springframework.data.convert.CustomConversions" level="ERROR"/>
+      <logger name="perscholas" level="DEBUG" />
       <root level="INFO">
          <appender-ref ref="CONSOLE" />
       </root>

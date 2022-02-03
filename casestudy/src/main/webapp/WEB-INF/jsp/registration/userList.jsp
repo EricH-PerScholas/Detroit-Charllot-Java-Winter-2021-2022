@@ -3,9 +3,17 @@
 <jsp:include page="../include/header.jsp" />
 
 <form method="get" action="/registration-url-path/userList">
-    <input type="text" name="search">
+    <input type="text" name="search" value="${searchInput}">
     <button type="submit">Search</button>
 </form>
+<hr>
+<form method="get" action="/registration-url-path/userList">
+    First Name <input type="text" name="firstName">
+    <br>
+    Last Name <input type="text" name="lastName">
+    <button type="submit">Search</button>
+</form>
+<hr>
 
 <table border="1">
     <tr>

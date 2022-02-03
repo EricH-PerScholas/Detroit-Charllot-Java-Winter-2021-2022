@@ -24,7 +24,7 @@ public class RegisterFormBean {
     @EmailUnique(message = "Email must be unique")
     private String email;
 
-    @Length(min = 1, max = 5,
+    @Length(min = 1, max = 50,
             message = "First Name must be between 1 and 5 characters in length.")
     private String firstName;
 
