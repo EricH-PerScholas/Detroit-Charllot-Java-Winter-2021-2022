@@ -110,7 +110,7 @@ public class RegistrationController {
 
     // this method describes what happens when a user submits the form to the back end
     // it handles both the create and update logic for saving the user input to the database
-    @RequestMapping(value = "/registerSubmit", method = RequestMethod.GET)
+    @RequestMapping(value = "/registerSubmit", method = { RequestMethod.POST, RequestMethod.GET })
     public ModelAndView registerSubmit(@Valid RegisterFormBean form, BindingResult errors) throws Exception {
         ModelAndView response = new ModelAndView();
 
@@ -148,7 +148,22 @@ public class RegistrationController {
 
             userDao.save(user);
 
-            response.setViewName("redirect:/login");
+           // response.setViewName("redirect:/login");
+            response.setViewName("registration/register");
+        }
+
+        return response;
+    }
+
+    @RequestMapping(value = "/deleteUser", method = RequestMethod.GET)
+    public ModelAndView delete(@RequestParam Integer id ) throws Exception {
+        ModelAndView response = new ModelAndView();
+
+        response.setViewName("redirect:/registration-url-path/userList");
+
+        User delete = userDao.findById(id);
+        if ( delete != null ) {
+            userDao.delete(delete);
         }
 
         return response;

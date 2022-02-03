@@ -2,7 +2,7 @@
 
 <jsp:include page="../include/header.jsp" />
 
-<form method="GET" action="/registration-url-path/registerSubmit">
+<form method="POST" action="/registration-url-path/registerSubmit">
     <input type="hidden" name="id" value="${formBeanKey.id}">
 
     <table cellpadding="5">

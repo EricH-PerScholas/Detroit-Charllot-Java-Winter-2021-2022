@@ -24,6 +24,7 @@
         <td><b>Last Name</b></td>
         <td><b>Password</b></td>
         <td><b>Edit</b></td>
+        <td><b>Delete</b></td>
     </tr>
     <c:forEach items="${userListKey}" var="user">
         <tr>
@@ -34,6 +35,7 @@
             <td>${user.lastName}</td>
             <td>${user.password}</td>
             <td><a href="/registration-url-path/register?id=${user.id}">Edit</td>
+            <td><a href="/registration-url-path/deleteUser?id=${user.id}">Delete</td>
         </tr>
     </c:forEach>
 </table>
