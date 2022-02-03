@@ -3,6 +3,7 @@
 <jsp:include page="../include/header.jsp" />
 
 <form method="GET" action="/registration-url-path/registerSubmit">
+    <input type="hidden" name="id" value="${formBeanKey.id}">
 
     <table cellpadding="5">
         <tr>
@@ -34,6 +35,7 @@
             <td><input type="password" name="confirmPassword" value="${formBeanKey.confirmPassword}"><td>
         </tr>
     </table>
+
 
 	<button type="submit">Submit</button>
 

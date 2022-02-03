@@ -73,17 +73,43 @@ public class RegistrationController {
         return response;
     }
 
+    // this method is responsible for populating the jsp page with the correct data so the page can render
+    // if this method is called without the id parameter it will be a create and no database will be loaded
+    // if it is called with an id it will be an edit and we need to load the user from the databse and
+    // populate the form bean.
     @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public ModelAndView register() throws Exception {
+    public ModelAndView register(@RequestParam(required = false) Integer id ) throws Exception {
         ModelAndView response = new ModelAndView();
         response.setViewName("registration/register");
 
-        RegisterFormBean form = new RegisterFormBean();
-        response.addObject("formBeanKey", form);
+        if ( id != null ) {
+            // id has been passed to this form so it is an edit
+            User user = userDao.findById(id);
+
+            // populate the form bean with the data loaded from the database
+            RegisterFormBean form = new RegisterFormBean();
+            form.setEmail(user.getEmail());
+            form.setFirstName(user.getFirstName());
+            form.setLastName(user.getLastName());
+            form.setUsername(user.getUsername());
+            form.setPassword(user.getPassword());
+            // since we loaded this from the database we know the id field
+            form.setId(user.getId());
+
+            response.addObject("formBeanKey", form);
+        } else {
+            // an id has not been passed so it is a create
+            // there is no data from the database so give an empty form bean
+            RegisterFormBean form = new RegisterFormBean();
+            response.addObject("formBeanKey", form);
+        }
 
         return response;
     }
 
+
+    // this method describes what happens when a user submits the form to the back end
+    // it handles both the create and update logic for saving the user input to the database
     @RequestMapping(value = "/registerSubmit", method = RequestMethod.GET)
     public ModelAndView registerSubmit(@Valid RegisterFormBean form, BindingResult errors) throws Exception {
         ModelAndView response = new ModelAndView();
@@ -101,10 +127,18 @@ public class RegistrationController {
             response.setViewName("registration/register");
 
         } else {
-            // there are no errors on the form submission lets redirect to the login page
-            // right here that you would save the new user registration to the database
-            // however we will get to this later in the week when spring JPA
-            User user = new User();
+            // there are no errors on the form submission so this is either a create or an update.
+
+            // no matter what we need to create a new user object
+            User user;
+
+            if ( form.getId() == null ) {
+                // the id is not present in the form bean so we know this is a create
+                user  = new User();
+            } else {
+                // this is an update so we need to load the user from the database first
+                user = userDao.findById(form.getId());
+            }
 
             user.setEmail(form.getEmail());
             user.setFirstName(form.getFirstName());

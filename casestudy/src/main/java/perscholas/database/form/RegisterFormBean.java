@@ -18,10 +18,13 @@ import java.util.List;
 @TwoFieldsAreEqual(fieldOneName = "confirmPassword", fieldTwoName = "password", message = "Password and Conform Password must be the same.")
 public class RegisterFormBean {
 
+    // this is a hidden data value and is only needed to distinguish an edit from a create
+    private Integer id;
+
     // making sure the email is not null and is not empty as in ""
     @NotEmpty(message = "Email is required.")
     @Pattern(regexp = "^.+@.+$" , message = "Invalid email format")
-    @EmailUnique(message = "Email must be unique")
+    //@EmailUnique(message = "Email must be unique")
     private String email;
 
     @Length(min = 1, max = 50,
