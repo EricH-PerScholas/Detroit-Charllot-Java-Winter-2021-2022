@@ -1,4 +1,4 @@
-package com.seriesreminder.security;
+package perscholas.security;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,10 +14,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import com.seriesreminder.database.dao.UserMDAO;
-import com.seriesreminder.database.entity.UserMSQL;
-import com.seriesreminder.database.entity.UserRoleMSQL;
-import com.seriesreminder.database.enums.UserRoleEnum;
+
+import perscholas.database.dao.UserDAO;
+import perscholas.database.entity.User;
+import perscholas.database.entity.UserRole;
 
 @Component
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -25,34 +25,36 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	public static final Logger LOG = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
 
 	@Autowired
-	private UserMDAO userDao;
+	private UserDAO userDao;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		UserMSQL user = userDao.findByEmail(username);
+		User user = userDao.findByEmail(username);
 
 		if (user == null) {
 			throw new UsernameNotFoundException("Username '" + username + "' not found in database");
 		}
 
-		List<UserRoleMSQL> userRoles = userDao.getUserRoles(user.getId());
-
 		// check the account status
-		boolean accountIsEnabled = false;
-
-		accountIsEnabled = user.isActive();
+		boolean accountIsEnabled = true;
+		//accountIsEnabled = user.isActive();
 
 		// spring security configs
 		boolean accountNonExpired = true;
+
+		//if ( user.getExpirationDate().before(new Date()))
 		boolean credentialsNonExpired = true;
+
 		boolean accountNonLocked = true;
 
 		// setup user roles
 		// List<Permission> permissions = userDao.getPermissionsByEmail(username);
 		// Collection<? extends GrantedAuthority> springRoles = buildGrantAuthorities(permissions);
+		List<UserRole> userRoles = userDao.getUserRoles(user.getId());
 		Collection<? extends GrantedAuthority> springRoles = buildGrantAuthorities(userRoles);
 
-		return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), accountIsEnabled, accountNonExpired, credentialsNonExpired, accountNonLocked, springRoles);
+		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), accountIsEnabled,
+				accountNonExpired, credentialsNonExpired, accountNonLocked, springRoles);
 	}
 
 //	private Collection<? extends GrantedAuthority> buildGrantAuthorities(List<Permission> permissions) {
@@ -64,15 +66,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 //		return authorities;
 //	}
 
-	private Collection<? extends GrantedAuthority> buildGrantAuthorities(List<UserRoleMSQL> userRoles) {
+	private Collection<? extends GrantedAuthority> buildGrantAuthorities(List<UserRole> userRoles) {
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 
-		for (UserRoleMSQL role : userRoles) {
-			authorities.add(new SimpleGrantedAuthority(role.getRole().toString()));
+		for (UserRole role : userRoles) {
+			authorities.add(new SimpleGrantedAuthority(role.getUserRole().toString()));
 		}
 
 		// always add the user role
-		authorities.add(new SimpleGrantedAuthority(UserRoleEnum.USER.toString()));
+		//authorities.add(new SimpleGrantedAuthority(UserRoleEnum.USER.toString()));
 
 		return authorities;
 	}

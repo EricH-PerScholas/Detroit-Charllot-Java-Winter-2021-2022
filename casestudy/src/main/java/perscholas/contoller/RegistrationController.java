@@ -93,6 +93,7 @@ public class RegistrationController {
             form.setLastName(user.getLastName());
             form.setUsername(user.getUsername());
             form.setPassword(user.getPassword());
+            form.setConfirmPassword(user.getPassword());
             // since we loaded this from the database we know the id field
             form.setId(user.getId());
 
