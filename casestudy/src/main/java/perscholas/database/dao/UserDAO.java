@@ -35,5 +35,5 @@ public interface UserDAO extends JpaRepository<User, Long> {
     public List<User> findByFirstNameLike(String firstName);
 
     @Query("select ur from UserRole ur where ur.user.id = :userId")
-    List<UserRole> getUserRoles(Integer userId);
+    List<UserRole> getUserRoles(@Param("userId")  Integer userId);
 }
