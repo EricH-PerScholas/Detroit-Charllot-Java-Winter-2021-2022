@@ -36,11 +36,13 @@
 <!-- implement any html you need to show on every page as a header here -->
 <table cellpadding="5">
 <tr>
-    <td><a href="/logout">Logout</a></td>
+    <td><a href="/login/logout">Logout</a></td>
     <td>|</td>
     <td><a href="/registration-url-path/register">User Registration</a></td>
     <td>|</td>
     <td><a href="/registration-url-path/userList">User Search</a></td>
+    <td>|</td>
+    <td><a href="/admin/home">Admin Home</a></td>
 </tr>
 </table>
 

@@ -1,10 +1,4 @@
-<html>
-
-
-<link rel="stylesheet" href="/pub/css/style.css">
-
-<body>
-
+<jsp:include page="include/header.jsp" />
 
 <h1>User Registration</h1>
 
@@ -24,6 +18,4 @@
 	
 </form>
 
-</body>
-
-</html>
+<jsp:include page="include/footer.jsp" />

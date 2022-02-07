@@ -70,7 +70,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.logoutUrl("/login/logout")
 
 				// this is the URL the user will be redirected to after the have logged out
-				.logoutSuccessUrl("/")
+				.logoutSuccessUrl("/login/logoutSuccess")
 	            .and()
 	        .rememberMe()
 	        	// this configuration is for remember me and is not required for the class
