@@ -56,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.loginPage("/login/login")
 				// this is the URL where the login page submits to be processed by spring security
 				// this is implemented by spring security and does not need a controller
-	            .loginProcessingUrl("/login/login")
+	            .loginProcessingUrl("/login/loginSecurityPost")
 	            //.successHandler(successHandler)
 	            //.failureHandler(failureHandler)
 	            .and()
