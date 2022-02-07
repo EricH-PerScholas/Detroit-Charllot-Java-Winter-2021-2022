@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -40,6 +41,8 @@ public class RegistrationController {
     // make sure are import the slf4j object imports for this line of code
     public static final Logger LOG = LoggerFactory.getLogger(RegistrationController.class);
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private UserDAO userDao;
@@ -81,6 +84,7 @@ public class RegistrationController {
     public ModelAndView register(@RequestParam(required = false) Integer id ) throws Exception {
         ModelAndView response = new ModelAndView();
         response.setViewName("registration/register");
+
 
         if ( id != null ) {
             // id has been passed to this form so it is an edit
@@ -144,8 +148,10 @@ public class RegistrationController {
             user.setEmail(form.getEmail());
             user.setFirstName(form.getFirstName());
             user.setLastName(form.getLastName());
-            user.setPassword(form.getPassword());
             user.setUsername(form.getUsername());
+
+            String encryptedPassword = passwordEncoder.encode(form.getPassword());
+            user.setPassword(encryptedPassword);
 
             userDao.save(user);
 
