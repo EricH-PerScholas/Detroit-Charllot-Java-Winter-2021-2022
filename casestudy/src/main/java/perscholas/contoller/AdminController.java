@@ -1,5 +1,6 @@
 package perscholas.contoller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,13 +13,12 @@ import perscholas.security.UserDetailsServiceImpl;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+@Slf4j
 @Controller
 @RequestMapping("/admin")
 // this restricts the controller to admin only, this can be done at the class level or at the method level
 @PreAuthorize("hasAuthority('ADMIN')")
 public class AdminController {
-
-    public static final Logger LOG = LoggerFactory.getLogger(AdminController.class);
 
 
     //@PreAuthorize("hasAuthority('ADMIN', 'USER')")
@@ -26,6 +26,8 @@ public class AdminController {
     public ModelAndView index(HttpServletRequest request, HttpSession session) throws Exception {
         ModelAndView response = new ModelAndView();
         response.setViewName("admin/home");
+
+        log.debug("debug message");
         return response;
     }
 }
