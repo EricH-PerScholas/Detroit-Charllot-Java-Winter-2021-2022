@@ -29,12 +29,18 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		// if the incoming username or email is out found in the database
+		// this user will be null
+		// TODO if you want to login using username column you can change this to findByUsername or even findByUsernameOrEmail
 		User user = userDao.findByEmail(username);
 
 		if (user == null) {
+			// this means that the username was not found in the database so we are done
+			// and we can get out of here
 			throw new UsernameNotFoundException("Username '" + username + "' not found in database");
 		}
 
+		// we do not need to do anything with these flags for the project
 		// check the account status
 		boolean accountIsEnabled = true;
 		//accountIsEnabled = user.isActive();

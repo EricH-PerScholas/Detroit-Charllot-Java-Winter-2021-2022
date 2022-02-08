@@ -46,6 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	        .authorizeRequests()
 				// this line allows access to these URLs whithout the user logged in
 				// they are considered public URLs
+				// ** TODO THESE 2 LINES WILL PROBABLY NEED TO BE CHANGED FOR YOUR PROJECT **
 	        	.antMatchers("/pub/**", "/error/**", "/login/**","/search").permitAll()
 				// these are URLs that the user must be authenticated for
 				.antMatchers("/admin/**", "/user/**").authenticated()
@@ -53,9 +54,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	        .formLogin()
 	            // this is the URL for the login page - displays your JSP page for login
 				// this needs to be implemented in a controller.
+				// TODO create a controller method for this URL
 				.loginPage("/login/login")
 				// this is the URL where the login page submits to be processed by spring security
 				// this is implemented by spring security and does not need a controller
+				// TODO make your login page form action point to this URL with a method = POST
 	            .loginProcessingUrl("/login/loginSecurityPost")
 	            //.successHandler(successHandler)
 	            //.failureHandler(failureHandler)
@@ -67,14 +70,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 				// this is the URL that logs out a user.   So in your menu when you implement
 				// this is implemented by spring security and does not need a controller
+				// TODO make your logout link in your header point to this URL
 				.logoutUrl("/login/logout")
 
-				// this is the URL the user will be redirected to after the have logged out
+				// TODO this is the URL the user will be redirected to after the have logged out this can be any page you want
 				.logoutSuccessUrl("/login/logoutSuccess")
 	            .and()
 	        .rememberMe()
 	        	// this configuration is for remember me and is not required for the class
 				// but it would be nice if you implement it
+				// This you will not need for your case study unless you want to do advanced configuration
 				.key("SR_KEY_1")
 	        	.tokenValiditySeconds(60 * 60 * 24 * 30)
 	        	.rememberMeParameter("remember-me")

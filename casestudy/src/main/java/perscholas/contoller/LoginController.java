@@ -11,6 +11,8 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class LoginController {
 
+    // TODO create this controller with these 2 methods to give a view for the login page and for the logoutsuccess page
+
     @RequestMapping(value = "/login/login", method = RequestMethod.GET)
     public ModelAndView index(HttpServletRequest request, HttpSession session) throws Exception {
         ModelAndView response = new ModelAndView();
