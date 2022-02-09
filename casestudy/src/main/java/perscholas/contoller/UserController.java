@@ -7,10 +7,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import perscholas.database.dao.UserDAO;
@@ -19,6 +16,8 @@ import perscholas.database.entity.User;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -52,6 +51,21 @@ public class UserController {
         ModelAndView response = new ModelAndView();
         response.setViewName("user/fileUpload");
         return response;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/user/fileList", method = RequestMethod.GET)
+    public List<String> fileList() throws Exception {
+        String tempdir = System.getProperty("java.io.tmpdir") + File.separator + "perscholas";
+        File saveFileDirectory = new File(tempdir);
+
+        List<String> files = new ArrayList<>();
+        for ( File file : saveFileDirectory.listFiles() ) {
+            log.debug("File name : " + file.getAbsolutePath());
+            files.add(file.getAbsolutePath());
+        }
+
+        return files;
     }
 
     @RequestMapping(value = "/user/fileUploadSubmit", method = RequestMethod.POST)
