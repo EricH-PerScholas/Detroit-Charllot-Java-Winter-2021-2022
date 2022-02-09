@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import perscholas.database.entity.User;
 import perscholas.database.entity.UserRole;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 
@@ -17,6 +18,9 @@ public interface UserDAO extends JpaRepository<User, Long> {
     public User findByEmail(@Param("email") String email);
 
     public List<User> findByLastName(@Param("lastName") String lastName);
+
+    public List<User> findByFirstNameContainingIgnoreCase(@Param("lastName") String lastName);
+
 
     public List<User> findByFirstNameAndLastName(@Param("firstName") String firstName, @Param("lastName") String lastName);
 
@@ -31,8 +35,8 @@ public interface UserDAO extends JpaRepository<User, Long> {
     @Query("select u from User u where u.username = :username")
     public User findByUsername(@Param("username") String uname);
 
-    @Query(value="SELECT u.* FROM user u WHERE u.first_name like '%:firstName%'", nativeQuery = true)
-    public List<User> findByFirstNameLike(String firstName);
+    @Query(value="SELECT u.* FROM users u WHERE u.first_name like %:firstName%", nativeQuery = true)
+    public List<User> findByFirstNameLike(@Param("firstName") String firstName);
 
     @Query("select ur from UserRole ur where ur.user.id = :userId")
     List<UserRole> getUserRoles(@Param("userId")  Integer userId);
