@@ -53,6 +53,8 @@
     <td><a href="/registration-url-path/register">User Registration</a></td>
     <td>|</td>
     <td><a href="/registration-url-path/userList">User Search</a></td>
+    <td>|</td>
+        <td><a href="/product/list">Product List</a></td>
 
    <sec:authorize access="hasAnyAuthority('ADMIN', 'USER')">
         <td>|</td>
