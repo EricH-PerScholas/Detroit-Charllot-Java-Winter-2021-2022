@@ -1,0 +1,7 @@
+casestudy/src/main/java/META-INF/sun-jaxb.episode
+casestudy/src/main/java/perscholas/webservices/producer/Country.java
+casestudy/src/main/java/perscholas/webservices/producer/Currency.java
+casestudy/src/main/java/perscholas/webservices/producer/GetCountryRequest.java
+casestudy/src/main/java/perscholas/webservices/producer/GetCountryResponse.java
+casestudy/src/main/java/perscholas/webservices/producer/ObjectFactory.java
+casestudy/src/main/java/perscholas/webservices/producer/package-info.java

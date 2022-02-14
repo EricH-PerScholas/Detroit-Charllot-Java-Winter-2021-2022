@@ -41,6 +41,7 @@
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 
+
 		<!-- Security -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -51,6 +52,15 @@
 			<artifactId>spring-security-taglibs</artifactId>
 		</dependency>
 
+		<!-- webservices -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web-services</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>wsdl4j</groupId>
+			<artifactId>wsdl4j</artifactId>
+		</dependency>
 
 		<!-- database -->
 		<dependency>
@@ -151,7 +161,57 @@
 					</excludes>
 				</configuration>
 			</plugin>
+
+			<!-- producer webservice plugin -->
+			<plugin>
+				<groupId>org.jvnet.jaxb2.maven2</groupId>
+				<artifactId>maven-jaxb2-plugin</artifactId>
+				<version>0.14.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<generateDirectory>${project.basedir}/src/main/java</generateDirectory>
+					<generatePackage>perscholas.webservices.producer</generatePackage>
+					<schemaDirectory>src/main/resources/ws_producer</schemaDirectory>
+					<schemaIncludes>
+						<include>*.xsd</include>
+					</schemaIncludes>
+					<cleanPackageDirectories>false</cleanPackageDirectories>
+				</configuration>
+			</plugin>
+
+			<!-- consumer webservice plugin -->
+			<!--<plugin>
+				<groupId>org.jvnet.jaxb2.maven2</groupId>
+				<artifactId>maven-jaxb2-plugin</artifactId>
+				<version>0.14.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<generateDirectory>${project.basedir}/src/main/java</generateDirectory>
+					<generatePackage>perscholas.webservices.consumer</generatePackage>
+					<schemaDirectory>src/main/resources/ws_consumer</schemaDirectory>
+					<schemaIncludes>
+						<include>*.wsdl</include>
+					</schemaIncludes>
+					<cleanPackageDirectories>false</cleanPackageDirectories>
+				</configuration>
+			</plugin>-->
+
+
 		</plugins>
 	</build>
 
 </project>
+
+
