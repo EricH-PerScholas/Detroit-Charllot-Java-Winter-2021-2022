@@ -1,0 +1,39 @@
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+/src/main/java/perscholas/webservices/consumer/Country.java
+/src/main/java/perscholas/webservices/consumer/Currency.java
+/src/main/java/perscholas/webservices/consumer/GetCountryRequest.java
+/src/main/java/perscholas/webservices/consumer/GetCountryResponse.java
+/src/main/java/perscholas/webservices/consumer/ObjectFactory.java
+/src/main/java/perscholas/webservices/consumer/package-info.java

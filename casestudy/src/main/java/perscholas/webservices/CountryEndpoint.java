@@ -12,12 +12,9 @@ import perscholas.webservices.producer.GetCountryResponse;
 public class CountryEndpoint {
 	private static final String NAMESPACE_URI = "http://perscholas.com/springboot/myboot/producingwebservice";
 
+	@Autowired
 	private CountryRepository countryRepository;
 
-	@Autowired
-	public CountryEndpoint(CountryRepository countryRepository) {
-		this.countryRepository = countryRepository;
-	}
 
 	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "getCountryRequest")
 	@ResponsePayload
