@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -23,5 +25,8 @@ public class Product {
 
 	@Column(name = "image_url")
 	private String imageUrl;
+
+	@ManyToMany(mappedBy = "orders", fetch = FetchType.LAZY)
+	private Set<Order> orders = new HashSet<>();
 
 }

@@ -4,6 +4,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -191,5 +193,38 @@ public class RegistrationController {
         }
 
         return response;
+    }
+
+    public User getLoggedInUser() {
+        // this is boiler plate code to get the authentication information from spring security
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // gets the username that the user logged in with
+        String currentPrincipalName = authentication.getName();
+        // query the database to get the user object based on the logged in username
+        // in the case that you have used the email address to get the username
+        return userDao.findByEmail(currentPrincipalName);
+        // or you would use this line to get the user by username if you used username to login
+        // return userDao.findByUsername(currentPrincipalName);
+    }
+
+    @RequestMapping(value = "/addToCart", method = RequestMethod.GET)
+    public void addToCart(@RequestParam(required = true) Integer productId ) {
+        // for adding an item to an order
+        // 0) on your jsp page when a user adds an item to the cart you will pass the product id
+        // 1) query your product by the productId
+        // 1.1)  get the user record for the logged-in user with getLoggedInUser function
+        // 2) query your oder by the user_id and status cart ( this gets the most recent order for the logged-in user)
+        // 3) if the order does not exist ( id of the query response is null )
+        //      3a) create the order with status cart
+        //      3c) add the user object to the order
+        // 4) query the order_products table to see if the product is already in the order
+        // 5) if the product is not in the order
+        //      5a ) create a new order_product entity
+        //      5b ) set the product id on the order_product
+        //      5c ) set the order id on the order_product
+        // 6) if the product is already in the order
+        //      6a ) increment the quantity on the order_product
+        // 7) persist the order_product
+
     }
 }
