@@ -27,6 +27,7 @@ public class UserController {
     @Autowired
     private UserDAO userDao;
 
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
     @RequestMapping(value = "/user/profile", method = RequestMethod.GET)
     public ModelAndView index() throws Exception {
         ModelAndView response = new ModelAndView();
@@ -100,4 +101,6 @@ public class UserController {
         return response;
     }
 
+
 }
+

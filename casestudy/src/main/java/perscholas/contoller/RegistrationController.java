@@ -21,6 +21,7 @@ import perscholas.database.entity.UserRole;
 import perscholas.form.RegisterFormBean;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -87,10 +88,17 @@ public class RegistrationController {
     // if it is called with an id it will be an edit and we need to load the user from the databse and
     // populate the form bean.
     @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public ModelAndView register(@RequestParam(required = false) Integer id ) throws Exception {
+    public ModelAndView register() throws Exception {
         ModelAndView response = new ModelAndView();
         response.setViewName("registration/register");
 
+        return response;
+    }
+
+
+    public ModelAndView registerEditPage(@RequestParam(required = false) Integer id ) {
+        ModelAndView response = new ModelAndView();
+        response.setViewName("registration/register");
 
         if ( id != null ) {
             // id has been passed to this form so it is an edit
@@ -119,6 +127,7 @@ public class RegistrationController {
     }
 
 
+
     // this method describes what happens when a user submits the form to the back end
     // it handles both the create and update logic for saving the user input to the database
     @RequestMapping(value = "/registerSubmit", method = { RequestMethod.POST, RequestMethod.GET })
@@ -128,12 +137,17 @@ public class RegistrationController {
         System.out.println(form);
 
         if (errors.hasErrors()) {
+            // this list is populated by the controller with all error messages
+            // in the binding result.
+            List<String> errorMessages = new ArrayList<>();
+
             for ( FieldError error : errors.getFieldErrors() ) {
                 // add the error message to the errorMessages list in the form bean
-                form.getErrorMessages().add(error.getDefaultMessage());
+                errorMessages.add(error.getDefaultMessage());
                 LOG.debug("error field = " + error.getField() + " message = " + error.getDefaultMessage());
             }
 
+            response.addObject("errorMessages", errorMessages);
             response.addObject("formBeanKey", form);
             response.setViewName("registration/register");
 

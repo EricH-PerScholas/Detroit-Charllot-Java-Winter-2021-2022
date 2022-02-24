@@ -47,9 +47,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				// this line allows access to these URLs whithout the user logged in
 				// they are considered public URLs
 				// ** TODO THESE 2 LINES WILL PROBABLY NEED TO BE CHANGED FOR YOUR PROJECT **
-	        	.antMatchers("/pub/**", "/error/**", "/login/**","/search").permitAll()
+	        	.antMatchers("/pub/**", "/error/**", "/login/**","/search", "/product**").permitAll()
 				// these are URLs that the user must be authenticated for
-				.antMatchers("/admin/**", "/user/**").authenticated()
+				.antMatchers("/**").authenticated()
 	        	.and()
 	        .formLogin()
 	            // this is the URL for the login page - displays your JSP page for login

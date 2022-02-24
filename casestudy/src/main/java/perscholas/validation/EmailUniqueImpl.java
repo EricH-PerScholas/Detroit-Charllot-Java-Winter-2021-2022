@@ -37,7 +37,7 @@ public class EmailUniqueImpl implements ConstraintValidator<EmailUnique, String>
             return true;
         }
 
-        //boolean passes = ! StringUtils.equals(value, "a@b.com");
+        // if the user obect returned by this query is null then the test is a pass and you can return true;
         User user = userDao.findByEmail(value);
 
         return ( user == null );

@@ -24,7 +24,7 @@ public class RegisterFormBean {
     // making sure the email is not null and is not empty as in ""
     @NotEmpty(message = "Email is required.")
     @Pattern(regexp = "^.+@.+$" , message = "Invalid email format")
-    //@EmailUnique(message = "Email must be unique")
+    @EmailUnique(message = "Email must be unique")
     private String email;
 
     @Length(min = 1, max = 50,
@@ -45,9 +45,7 @@ public class RegisterFormBean {
     private String password;
     private String confirmPassword;
 
-    // this list is populated by the controller with all error messages
-    // in the binding result.
-    private List<String> errorMessages = new ArrayList<>();
+
 
 
 
