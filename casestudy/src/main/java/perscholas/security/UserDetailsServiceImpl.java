@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 
 import perscholas.database.dao.UserDAO;
+import perscholas.database.dao.UserRoleDAO;
 import perscholas.database.entity.User;
 import perscholas.database.entity.UserRole;
 
@@ -26,6 +27,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
 	private UserDAO userDao;
+
+	@Autowired
+	private UserRoleDAO userRoleDao;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -40,27 +44,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 			throw new UsernameNotFoundException("Username '" + username + "' not found in database");
 		}
 
-		// we do not need to do anything with these flags for the project
-		// check the account status
-		boolean accountIsEnabled = true;
-		//accountIsEnabled = user.isActive();
+		// we got here so it means the user was found in the database
+		List<UserRole> userRoles = userRoleDao.getUserRoles(user.getId());
 
-		// spring security configs
-		boolean accountNonExpired = true;
 
-		//if ( user.getExpirationDate().before(new Date()))
-		boolean credentialsNonExpired = true;
-
-		boolean accountNonLocked = true;
-
-		// setup user roles
-		// List<Permission> permissions = userDao.getPermissionsByEmail(username);
-		// Collection<? extends GrantedAuthority> springRoles = buildGrantAuthorities(permissions);
-		List<UserRole> userRoles = userDao.getUserRoles(user.getId());
 		Collection<? extends GrantedAuthority> springRoles = buildGrantAuthorities(userRoles);
-
-		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), accountIsEnabled,
-				accountNonExpired, credentialsNonExpired, accountNonLocked, springRoles);
+		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), springRoles);
 	}
 
 //	private Collection<? extends GrantedAuthority> buildGrantAuthorities(List<Permission> permissions) {

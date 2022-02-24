@@ -20,36 +20,21 @@ import perscholas.security.UserDetailsServiceImpl;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled=true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	
-//	@Autowired
-//	private AuthenticationSuccessHandlerImpl successHandler;
-//
-//	@Autowired
-//	private AuthenticationFailureHandlerImpl failureHandler;
-//
+
 	@Autowired
 	private UserDetailsServiceImpl userDetailsService;
-	
-//	@Bean
-//	public LoginUrlAuthenticationEntryPoint getAuthenticationEntryPoint() {
-//		return new AuthenticationEntryPointImpl("/login/login");
-//	}
 
 	@Override
 	protected void configure(final HttpSecurity http) throws Exception {
 		http
 			.csrf().disable()
-//			.headers()
-				// frame options implemented in a custom filter
-//				.frameOptions().disable()
-//				.and()
 	        .authorizeRequests()
+				// these are URLs that the user must be authenticated for
+				.antMatchers("/**").authenticated()
 				// this line allows access to these URLs whithout the user logged in
 				// they are considered public URLs
 				// ** TODO THESE 2 LINES WILL PROBABLY NEED TO BE CHANGED FOR YOUR PROJECT **
-	        	.antMatchers("/pub/**", "/error/**", "/login/**","/search", "/product**").permitAll()
-				// these are URLs that the user must be authenticated for
-				.antMatchers("/**").authenticated()
+	        	.antMatchers("/pub/**", "/error/**", "/login/**","/searchList", "/product**", "/index").permitAll()
 	        	.and()
 	        .formLogin()
 	            // this is the URL for the login page - displays your JSP page for login
@@ -61,8 +46,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				// !!!!!!!!!!!!!!!!!!!!!!!! this is implemented by spring security and does not need a controller
 				// TODO make your login page form action point to this URL with a method = POST
 	            .loginProcessingUrl("/login/loginSecurityPost")
-	            //.successHandler(successHandler)
-	            //.failureHandler(failureHandler)
 	            .and()
 	        .logout()
 				// invalidating the session removes the JSESSION_ID cookie from the browser
