@@ -29,13 +29,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.csrf().disable()
 	        .authorizeRequests()
-				// these are URLs that the user must be authenticated for
-				.antMatchers("/**").authenticated()
-				// this line allows access to these URLs whithout the user logged in
+					// this line allows access to these URLs whithout the user logged in
 				// they are considered public URLs
 				// ** TODO THESE 2 LINES WILL PROBABLY NEED TO BE CHANGED FOR YOUR PROJECT **
 	        	.antMatchers("/pub/**", "/error/**", "/login/**","/searchList", "/product**", "/index").permitAll()
-	        	.and()
+				// these are URLs that the user must be authenticated for
+				.antMatchers("/**").authenticated()
+
+				.and()
 	        .formLogin()
 	            // this is the URL for the login page - displays your JSP page for login
 				// this needs to be implemented in a controller.  This will get called when there is an invalid login attempt
