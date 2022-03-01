@@ -170,11 +170,16 @@ public class RegistrationController {
             user.setLastName(form.getLastName());
             user.setUsername(form.getUsername());
 
+            // use this line of code if you wanted to manually check a password against a hash
+            // in this case we would be comparing a password entered on a form with the current password on the user record.
+            boolean matches = passwordEncoder.matches(form.getPassword(), user.getPassword());
+
+            // use these 2 lines to setup the encoded password for this user in the database
             String encryptedPassword = passwordEncoder.encode(form.getPassword());
             user.setPassword(encryptedPassword);
 
             // if you are saving a new user without an id.  The return value of save will
-            // create a new autoincremented ID record and return the user object with the new id populated
+            // create a new auto incremented ID record and return the user object with the new id populated
             user = userDao.save(user);
 
             if ( form.getId() == null ) {

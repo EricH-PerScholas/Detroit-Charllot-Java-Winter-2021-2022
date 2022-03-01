@@ -32,34 +32,26 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	private UserRoleDAO userRoleDao;
 
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	// ####################### the variable name for this method does not matter !!!!! #######################
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		// if the incoming username or email is out found in the database
 		// this user will be null
 		// TODO if you want to login using username column you can change this to findByUsername or even findByUsernameOrEmail
-		User user = userDao.findByEmail(username);
+		User user = userDao.findByEmail(email);
+		//User user = userDao.findByUsername(username);
 
 		if (user == null) {
 			// this means that the username was not found in the database so we are done
 			// and we can get out of here
-			throw new UsernameNotFoundException("Username '" + username + "' not found in database");
+			throw new UsernameNotFoundException("Username '" + email + "' not found in database");
 		}
 
 		// we got here so it means the user was found in the database
 		List<UserRole> userRoles = userRoleDao.getUserRoles(user.getId());
 
-
 		Collection<? extends GrantedAuthority> springRoles = buildGrantAuthorities(userRoles);
-		return new org.springframework.security.core.userdetails.User(username, user.getPassword(), springRoles);
+		return new org.springframework.security.core.userdetails.User(email, user.getPassword(), springRoles);
 	}
-
-//	private Collection<? extends GrantedAuthority> buildGrantAuthorities(List<Permission> permissions) {
-//		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-//		for (Permission permission : permissions) {
-//			authorities.add(new SimpleGrantedAuthority(permission.getName()));
-//		}
-//
-//		return authorities;
-//	}
 
 	private Collection<? extends GrantedAuthority> buildGrantAuthorities(List<UserRole> userRoles) {
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
@@ -68,10 +60,19 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 			authorities.add(new SimpleGrantedAuthority(role.getUserRole().toString()));
 		}
 
-		// always add the user role
-		//authorities.add(new SimpleGrantedAuthority(UserRoleEnum.USER.toString()));
-
 		return authorities;
 	}
+
+	/**
+	CREATE TABLE `user_roles` (
+			`id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+			`user_role` varchar(45) COLLATE utf8mb4_bin NOT NULL,
+	PRIMARY KEY (`id`),
+	UNIQUE KEY `ur_unique` (`user_role`,`user_id`) ,
+	KEY `FK_user_id_idx` (`user_id`),
+	CONSTRAINT `FK_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+			) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin
+	*/
 
 }

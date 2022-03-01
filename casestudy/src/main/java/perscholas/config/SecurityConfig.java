@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					// this line allows access to these URLs whithout the user logged in
 				// they are considered public URLs
 				// ** TODO THESE 2 LINES WILL PROBABLY NEED TO BE CHANGED FOR YOUR PROJECT **
-	        	.antMatchers("/pub/**", "/error/**", "/login/**","/searchList", "/product**", "/index").permitAll()
+	        	.antMatchers("/pub/**", "/error/**", "/login/**", "/index").permitAll()
 				// these are URLs that the user must be authenticated for
 				.antMatchers("/**").authenticated()
 
@@ -61,7 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 				// this is the URL the user will be redirected to after the have logged out this can be any page you want
 				// TODO implement a method in your LoginController to set the view for this URL
-				.logoutSuccessUrl("/login/logoutSuccess")
+				.logoutSuccessUrl("/")
 	            .and()
 //	        .rememberMe()
 //	        	// this configuration is for remember me and is not required for the class
