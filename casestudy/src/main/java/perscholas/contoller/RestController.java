@@ -62,7 +62,7 @@ public class RestController {
         User user = userDao.findById(id);
 
         if ( id != null && user != null ) {
-            List<UserRole> roles = userDao.getUserRoles(id);
+            List<UserRole> roles = userRoleDao.getUserRoles(id);
 
             for ( UserRole role : roles ) {
                 userRoleDao.delete(role);

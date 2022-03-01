@@ -56,7 +56,7 @@
 </form>
 
 <div>
-    <c:forEach items="${formBeanKey.errorMessages}" var="message">
+    <c:forEach items="${errorMessages}" var="message">
         <span style="color:red">${message}</span><br>
     </c:forEach>
 </div>

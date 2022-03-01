@@ -38,8 +38,5 @@ public class User {
 	@Column(name = "phone")
 	private String phone;
 
-	@OneToMany(mappedBy = "orders", fetch = FetchType.LAZY,
-			cascade = CascadeType.ALL)
-	private Set<Order> orders;
 
 }

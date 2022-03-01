@@ -49,7 +49,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 
 		Collection<? extends GrantedAuthority> springRoles = buildGrantAuthorities(userRoles);
-		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), springRoles);
+		return new org.springframework.security.core.userdetails.User(username, user.getPassword(), springRoles);
 	}
 
 //	private Collection<? extends GrantedAuthority> buildGrantAuthorities(List<Permission> permissions) {

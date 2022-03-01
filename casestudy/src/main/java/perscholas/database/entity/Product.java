@@ -14,19 +14,24 @@ import java.util.Set;
 public class Product {
 
 	@Id
-	// this annotation is what tells hibernate that this variable is an auto
-	// incremented primary key
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
 
-	@Column(name = "product_name")
-	private String productName;
+	@Column(name = "name")
+	private String name;
 
 	@Column(name = "image_url")
 	private String imageUrl;
 
-	@ManyToMany(mappedBy = "orders", fetch = FetchType.LAZY)
-	private Set<Order> orders = new HashSet<>();
+	@Column(name = "description")
+	private String description;
+
+	@Column(name = "category")
+	private String category;
+
+	@Column(name = "price")
+	private Double price;
+
 
 }

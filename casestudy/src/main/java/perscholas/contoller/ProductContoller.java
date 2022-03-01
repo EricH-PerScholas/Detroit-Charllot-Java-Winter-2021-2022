@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import perscholas.database.dao.ProductDAO;
+import perscholas.database.dao.UserDAO;
 import perscholas.database.entity.Product;
 import perscholas.database.entity.User;
 
@@ -17,6 +18,9 @@ import java.util.List;
 
 @Controller
 public class ProductContoller {
+
+    @Autowired
+    private UserDAO userDao;
 
     // this request mapping is going to be used to display the product.jsp
     // localhost:8080/order/add-to-cart?productId=4
