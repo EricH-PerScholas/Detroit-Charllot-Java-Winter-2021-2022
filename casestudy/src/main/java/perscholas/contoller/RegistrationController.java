@@ -193,8 +193,10 @@ public class RegistrationController {
                 userRoleDao.save(ur);
             }
 
-           // response.setViewName("redirect:/login");
-            response.setViewName("registration/register");
+            // check if this is an edit vs a create and redirect accordingly
+            // redirect to login page is best thing to do
+           response.setViewName("redirect:/login/login");
+           // response.setViewName("registration/register");
         }
 
         return response;
